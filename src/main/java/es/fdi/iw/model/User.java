@@ -15,10 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries({
-    @NamedQuery(name="userByLogin",
-        query="select u from User u where u.login = :loginParam")
-})
 public class User {	
 	private long id;
 	private String login;

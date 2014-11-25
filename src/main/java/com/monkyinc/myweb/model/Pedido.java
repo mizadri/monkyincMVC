@@ -1,42 +1,60 @@
 package com.monkyinc.myweb.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Pedido {
 	
-	@Id
-	private String id;
-	private String id_prod;
-	private String id_user;
+	
+	private long pedido_id;
+	private Usuario usuario;
 	private int cantidad;
 	private int precio;
+	private List<Producto> productos;
 	
-	public Pedido(){
-		
+	@Id
+	@GeneratedValue
+	public long getId_pedido() {
+		return pedido_id;
 	}
-	public Pedido(String id, String id_prod,String id_user,int cantidad, int precio){
-	this.id = id;
-	this.id_user = id_user;
-	this.id_prod = id_prod;
-	this.cantidad = cantidad;
-	this.precio = precio;
+	public void setId_pedido(long id_pedido) {
+		this.pedido_id = id_pedido;
 	}
-	
-	public String getId(){
-		return id;
+
+	@ManyToMany(targetEntity=Producto.class, fetch=FetchType.EAGER)
+	public List<Producto> getProductos() {
+		return productos;
 	}
-	public String getId_prod(){
-		return id_prod;
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
-	public String getId_user(){
-		return id_user;
+	@ManyToOne(targetEntity=Usuario.class)
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public int getCantidad(){
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public int getCantidad() {
 		return cantidad;
 	}
-	public int getPrecio(){
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	public int getPrecio() {
 		return precio;
 	}
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+	
+	
 }

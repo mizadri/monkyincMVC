@@ -1,29 +1,47 @@
 package com.monkyinc.myweb.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Tipo_producto {
 	 
-	@Id
-	private String id;
+	
+	private long id;
 	private String tipo;
+	private List<Producto> productos;
 	
-	public Tipo_producto(){
-		
+	@OneToMany(targetEntity=Pedido.class)
+	@JoinColumn(name="producto_id")
+	public List<Producto> getProductos() {
+		return productos;
 	}
-	
-	public Tipo_producto(String id,String tipo){
-		this.id = id;
-		this.tipo = tipo;
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
-	
-	public String getId(){
+
+	@Id
+	@GeneratedValue
+	public long getId(){
 		return id;
 	}
 	
 	public String getTipo(){
 		return tipo;
 	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 }

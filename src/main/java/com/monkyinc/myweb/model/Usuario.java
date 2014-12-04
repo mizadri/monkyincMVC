@@ -17,10 +17,10 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name="userByLogin",
-        query="select u from User u where u.login = :loginParam")
+        query="select u from Usuario u where u.login = :loginParam")
 })
 public class Usuario {	
-	private long usuario_id;
+	private long id;
 	private String login;
 	private String role;
 	private String hashedAndSalted;
@@ -33,7 +33,7 @@ public class Usuario {
 	private List<Pedido> pedido;
 	
 	@OneToMany(targetEntity=Pedido.class)
-	@JoinColumn(name="pedido_id")
+	@JoinColumn(name="id")
 	public List<Pedido> getPedido() {
 		return pedido;
 	}
@@ -121,11 +121,11 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	public long getId() {
-		return usuario_id;
+		return id;
 	}
 
 	public void setId(long id) {
-		this.usuario_id = id;
+		this.id = id;
 	}
 
 	@Column(unique=true)
@@ -163,17 +163,9 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "" + usuario_id + " " + login + " " + hashedAndSalted + " " + salt;
+		return "" + id + " " + login + " " + hashedAndSalted + " " + salt;
 	}
-
-	public long getUsuario_id() {
-		return usuario_id;
-	}
-
-	public void setUsuario_id(long usuario_id) {
-		this.usuario_id = usuario_id;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}

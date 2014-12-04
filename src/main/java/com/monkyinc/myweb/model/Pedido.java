@@ -8,13 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name="pedidoById",
+        query="select p from Pedido p where p.id = :idParam")
+})
 public class Pedido {
 	
 	
-	private long pedido_id;
+	private long id;
 	private Usuario usuario;
 	private int cantidad;
 	private int precio;
@@ -22,11 +28,11 @@ public class Pedido {
 	
 	@Id
 	@GeneratedValue
-	public long getId_pedido() {
-		return pedido_id;
+	public long getId() {
+		return id;
 	}
-	public void setId_pedido(long id_pedido) {
-		this.pedido_id = id_pedido;
+	public void setId(long id_pedido) {
+		this.id = id_pedido;
 	}
 
 	@ManyToMany(targetEntity=Producto.class, fetch=FetchType.EAGER)

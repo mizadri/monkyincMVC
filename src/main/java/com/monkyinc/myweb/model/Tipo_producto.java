@@ -17,7 +17,7 @@ public class Tipo_producto {
 	private List<Producto> productos;
 	
 	@OneToMany(targetEntity=Pedido.class)
-	@JoinColumn(name="producto_id")
+	@JoinColumn(name="id")
 	public List<Producto> getProductos() {
 		return productos;
 	}

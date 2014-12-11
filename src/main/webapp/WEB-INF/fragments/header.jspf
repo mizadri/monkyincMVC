@@ -1,3 +1,4 @@
+<title>${pageTitle}</title>
  <%--
  	Standard header for all jsp pages in the site. Requires the following model variables to be set:
   	- pageTitle
@@ -5,18 +6,40 @@
   	- pageExtraScripts: additional JS files to include (from resources/js; via script src)
  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib  uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" prefix="e" %>
 <div id="header">
+
 	<div class="header-inner">
 		<!-- Begin Shell -->
 		<div class="shell">
 			<h1 id="logo">
 				<a class="notext" href="#">Last4One</a>
 			</h1>
-			<div id="account">
-				<a class="view-account" title="Ver cuenta" href="#">Tu cesta</a>
-				<span>Articulos: 4</span><span>Precio: <strong>&#8364 50.90</strong></span>
-				<div class="cl">&nbsp;</div>
-			</div>
+	<%-- <div id="cajaLogin">
+	<c:choose>
+	<c:when test="${not empty user}">
+		Registrado como 
+		<a href="${prefix}user?u=${user.id}">${user.login}</a> [ ${user.role} ] 
+		( <a href="${prefix}logout">Salir</a> )
+	</c:when>
+	<c:otherwise>
+	<form action="${prefix}login" id="formularioLogin" method="POST">
+		<fieldset>
+			<label for="login">Login</label>
+			<input type="hidden" id="source" name="source" 
+				value="${requestScope['javax.servlet.forward.servlet_path']}"/>
+			<input type="text" id="login" name="login" placeholder="Login"/>
+			<input type="password" id="pass" name="pass" placeholder="Contraseña"/>
+			<button name="submit" value="login" type="submit">Entrar</button>
+			<a href="${prefix}register">No tengo</a>
+			<c:if test="${not empty loginError}">
+				<br><span class='errorLogin'>Login o contraseÃ±a incorrectos</span>
+			</c:if>
+		</fieldset>
+	</form>
+	</c:otherwise>
+	</c:choose>
+	</div> --%>
 			<!-- Begin Navigation -->
 			<div id="navigation">
 				<ul>
@@ -29,6 +52,7 @@
 				</ul>
 				<div class="cl">&nbsp;</div>
 			</div>
+	
 			<!-- End Navigation -->
 			<div class="cl">&nbsp;</div>
 		</div>

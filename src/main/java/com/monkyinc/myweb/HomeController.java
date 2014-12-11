@@ -12,15 +12,20 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.monkyinc.myweb.model.Usuario;
 
+import java.util.UUID;
 
 
 /**
@@ -56,6 +61,8 @@ public class HomeController {
 				if (u.isPassValid(formPass)) {
 					logger.info("pass was valid");				
 					session.setAttribute("user", u);
+					// sets the anti-csrf token
+					getTokenForSession(session);
 				} else {
 					logger.info("pass was NOT valid");
 					model.addAttribute("loginError", "error en usuario o contraseña");
@@ -67,6 +74,7 @@ public class HomeController {
 					Usuario user = Usuario.createUser(formLogin, formPass, "user");
 					entityManager.persist(user);				
 					session.setAttribute("user", user);
+					getTokenForSession(session);
 				} else {
 					logger.info("no such login: {}", formLogin);
 				}
@@ -78,6 +86,62 @@ public class HomeController {
 		return "redirect:" + formSource;
 	}
 	
+	//XSS version begin
+	/**
+	+	 * Delete a user; return JSON indicating success or failure
+	+	 */
+		@RequestMapping(value = "/delUser", method = RequestMethod.POST)
+		@ResponseBody
+		@Transactional // needed to allow DB change
+		public ResponseEntity<String> bookAuthors(@RequestParam("id") long id,
+				@RequestParam("csrf") String token, HttpSession session) {
+			if ( ! isAdmin(session) || ! isTokenValid(session, token)) {
+				return new ResponseEntity<String>("Error: no such user or bad auth", 
+						HttpStatus.FORBIDDEN);
+			} else if (entityManager.createNamedQuery("delUser")
+					.setParameter("idParam", id).executeUpdate() == 1) {
+				return new ResponseEntity<String>("Ok: user " + id + " removed", 
+						HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("Error: no such user", 
+						HttpStatus.BAD_REQUEST);
+			}
+		}
+		
+		/**
+		+	 * Checks the anti-csrf token for a session against a value
+		+	 * @param session
+		+	 * @param token
+		+	 * @return the token
+		+	 */
+			static boolean isTokenValid(HttpSession session, String token) {
+			    Object t=session.getAttribute("csrf_token");
+			    return (t != null) && t.equals(token);
+			}
+			
+			/**
+			 * Returns an anti-csrf token for a session, and stores it in the session
+			 * @param session
+			 * @return
+			 */
+			static String getTokenForSession (HttpSession session) {
+			    String token=UUID.randomUUID().toString();
+			    session.setAttribute("csrf_token", token);
+			    return token;
+			}
+			
+			/** 
+			 * Returns true if the user is logged in and is an admin
+			 */
+			static boolean isAdmin(HttpSession session) {
+				Usuario u = (Usuario)session.getAttribute("user");
+				if (u != null) {
+					return u.getRole().equals("admin");
+				} else {
+					return false;
+				}
+			}
+			//XSS version begin	
 	/**
 	 * Logout (also returns to home view).
 	 */
@@ -130,6 +194,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("pageTitle", "MonkyInc:Bienvenido");
 		
 		return "home";
 	}
@@ -144,7 +209,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		model.addAttribute("pageTitle", "Administracion");
 		return "admin";
 	}
 	
@@ -158,7 +223,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		model.addAttribute("pageTitle", "Mi cuenta");
 		return "account";
 	}
 	
@@ -172,7 +237,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		model.addAttribute("pageTitle", "Contacto");
 		return "contact";
 	}
 	
@@ -186,7 +251,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		model.addAttribute("pageTitle", "Registro");
 		return "register";
 	}
 	
@@ -200,7 +265,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+		model.addAttribute("pageTitle", "Ayuda");
 		return "support";
 	}
 	

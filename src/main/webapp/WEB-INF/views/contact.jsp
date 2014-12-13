@@ -53,7 +53,18 @@
 						</ul>
 					</form>
 					<script>
-						$("#contacto").validate();
+						$("#contacto").validate({
+							rules : {
+								// simple rule, converted to {required:true}
+								name : "required",
+								// compound rule
+								email : {
+									required : true,
+									email : true
+								}
+							}
+						});
+);
 					</script>
 					<!-- End Content -->
 					<div class="cl">&nbsp;</div>

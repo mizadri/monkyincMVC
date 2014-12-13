@@ -44,36 +44,8 @@
 		<!-- Begin Inner -->
 		<div class="inner">
 			<!-- Begin Header -->
-			<div id="header">
-				<div class="header-inner">
-					<!-- Begin Shell -->
-					<div class="shell">
-						<h1 id="logo">
-							<a class="notext" href="#">Last4One</a>
-						</h1>
-						<div id="account">
-							<a class="view-account" title="Ver cuenta" href="#">Tu cesta</a>
-							<span>Articulos: 4</span><span>Precio: <strong>&#836450.90</strong></span>
-							<div class="cl">&nbsp;</div>
-						</div>
-						<!-- Begin Navigation -->
-						<div id="navigation">
-							<ul>
-								<li><a href="#" title="P&aacutegina de Inicio"><span>Inicio</span></a></li>
-								<li><a href="support.html" title="P&aacutegina de Soporte"><span>Soporte</span></a></li>
-								<li><a href="account.html" title="P&aacutegina de Mi Cuenta"><span>Mi
-											cuenta</span></a></li>
-								<li><a href="#" title="P&aacutegina de la Tienda"><span>Tienda</span></a></li>
-								<li><a href="contact.html" title="P&aacutegina de Contacto"><span>Contacto</span></a></li>
-							</ul>
-							<div class="cl">&nbsp;</div>
-						</div>
-						<!-- End Navigation -->
-						<div class="cl">&nbsp;</div>
-					</div>
-					<!-- End Shell -->
-				</div>
-			</div>
+			<!-- Begin Header -->
+			<%@ include file="../fragments/header.jspf" %>
 			<!-- End Header -->
 			<!-- Begin Shell -->
 			<div class="shell">

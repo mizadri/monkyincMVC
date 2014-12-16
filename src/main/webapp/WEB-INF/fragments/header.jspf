@@ -15,7 +15,7 @@
 		<!-- Begin Shell -->
 		<div class="shell">
 			<h1 id="logo">
-				<a class="notext" href="#">Last4One</a>
+				<a class="notext" href="/myweb">Last4One</a>
 			</h1>
 			<%-- <div id="cajaLogin">
 	<c:choose>
@@ -78,7 +78,7 @@
 												<input type="text" id="login" name="login"
 													placeholder="Usuario" />
 												<p></p>
-												<label for="login">Contrase&ntildea</label> <input
+												<label for="contraseña">Contrase&ntildea</label> <input
 													type="password" id="pass" name="pass"
 													placeholder="Contrase&#241a" />
 												<button name="submit" value="login" type="submit">Entrar</button>

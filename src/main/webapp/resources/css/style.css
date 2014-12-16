@@ -317,12 +317,12 @@ button.submit:active {
     background-color: #fff;
     border: 3px solid #fff;
     display: inline-block;
-    left: 75%;
+    left: 77%;
     opacity: 0;
     padding: 15px;
     position: fixed;
     text-align: justify;
-    top: 40%;
+    top: 26%;
     visibility: hidden;
     z-index: 10;
 
@@ -351,7 +351,6 @@ button.submit:active {
     transition: opacity .5s, top .5s;
 }
 .overlay:target+.popup {
-    top: 15%;
     opacity: 1;
     visibility: visible;
 }

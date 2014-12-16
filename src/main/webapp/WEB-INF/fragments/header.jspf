@@ -45,19 +45,19 @@
 			<!-- Begin Navigation -->
 			<div id="navigation">
 				<ul>
-					<li><a href="/myweb" title="Página de Inicio"><span>Inicio</span></a></li>
-					<li><a href="support" title="Página de Soporte"><span>Soporte</span></a></li>
-					<li><a href="account" title="Página de Mi Cuenta"><span>Mi
+					<li><a href="/myweb" title="P&#225gina de Inicio"><span>Inicio</span></a></li>
+					<li><a href="support" title="P&#225gina de Soporte"><span>Soporte</span></a></li>
+					<li><a href="account" title="P&#225gina de Mi Cuenta"><span>Mi
 								cuenta</span></a></li>
-					<li><a href="#" title="Página de la Tienda"><span>Tienda</span></a></li>
-					<li><a href="contact" title="Página de Contacto"><span>Contacto</span></a></li>
-					<!-- 					<li><a href="#" title="Iniciar Sesi&oacuten"><span>Iniciar Sesi&oacuten</span></a></li> -->
+					<li><a href="#" title="P&#225gina de la Tienda"><span>Tienda</span></a></li>
+					<li><a href="contact" title="P&#225gina de Contacto"><span>Contacto</span></a></li>
+					<!-- 					<li><a href="#" title="Iniciar Sesi&#243n"><span>Iniciar Sesi&#243n</span></a></li> -->
 					<li>
 						<!-- panel with buttons -->
 
 						<div class="panel">
-							<a href="#login_form" title="Iniciar Sesi&oacuten"><span>Iniciar
-									Sesi&oacuten</span></a></a>
+							<a href="#login_form" title="Iniciar Sesi&#243n"><span>Iniciar
+									Sesi&#243n</span></a></a>
 						</div> <!-- popup form #1 --> <a href="#x" class="overlay"
 						id="login_form"></a>
 						<div class="popup">

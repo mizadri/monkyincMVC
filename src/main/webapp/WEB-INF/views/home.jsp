@@ -19,28 +19,17 @@
 								<h2>Categorias</h2>
 								<ul>
 									<li><a href="#" title="Categoría 1">Categoría 1</a></li>
-									<li><a href="#" title="Categoría 2">Categoría
-											2</a></li>
-									<li><a href="#" title="Categoría 3">Categoría
-											3</a></li>
-									<li><a href="#" title="Categoría 4">Categoría
-											4</a></li>
-									<li><a href="#" title="Categoría 5">Categoría
-											5</a></li>
-									<li><a href="#" title="Categoría 6">Categoría
-											6</a></li>
-									<li><a href="#" title="Categoría 7">Categoría
-											7</a></li>
-									<li><a href="#" title="Categoría 8">Categoría
-											8</a></li>
-									<li><a href="#" title="Categoría 9">Categoría
-											9</a></li>
-									<li><a href="#" title="Categoría 10">Categoría
-											10</a></li>
-									<li><a href="#" title="Categoría 11">Categoría
-											11</a></li>
-									<li><a href="#" title="Categoría 12">Categoría
-											12</a></li>
+									<li><a href="#" title="Categoría 2">Categoría 2</a></li>
+									<li><a href="#" title="Categoría 3">Categoría 3</a></li>
+									<li><a href="#" title="Categoría 4">Categoría 4</a></li>
+									<li><a href="#" title="Categoría 5">Categoría 5</a></li>
+									<li><a href="#" title="Categoría 6">Categoría 6</a></li>
+									<li><a href="#" title="Categoría 7">Categoría 7</a></li>
+									<li><a href="#" title="Categoría 8">Categoría 8</a></li>
+									<li><a href="#" title="Categoría 9">Categoría 9</a></li>
+									<li><a href="#" title="Categoría 10">Categoría 10</a></li>
+									<li><a href="#" title="Categoría 11">Categoría 11</a></li>
+									<li><a href="#" title="Categoría 12">Categoría 12</a></li>
 									<li class="last"><a href="#" title="Categoría 13">Categoría
 											13</a></li>
 								</ul>
@@ -52,10 +41,9 @@
 								<div id="search">
 									<form action="#" method="get" accept-charset="utf-8">
 										<label>Palabras clave</label> <input type="text" class="blink"
-											name="keyword" /> <label>Categoría</label> <select
-											size="1" name="category">
-											<option value="default">-- Seleccione
-												Categoría --</option>
+											name="keyword" /> <label>Categoría</label> <select size="1"
+											name="category">
+											<option value="default">-- Seleccione Categoría --</option>
 											<option value="category1">Categoría 1</option>
 											<option value="category2">Categoría 2</option>
 											<option value="category3">Categoría 3</option>
@@ -293,8 +281,11 @@
 					</div>
 					<!-- End Home Boxes -->
 				</div>
-				<!-- End Main -->
-				<%@ include file="../fragments/footer.jspf"%>
+				<!-- End Shell -->
 			</div>
-
-			</html>
+			<!-- End Inner -->
+		</div>
+		<!-- End Wrapper -->
+	</div>
+	<%@ include file="../fragments/footer.jspf"%>
+</html>

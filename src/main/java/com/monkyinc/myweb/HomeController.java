@@ -69,12 +69,14 @@ public class HomeController {
 				}
 			} catch (NoResultException nre) {
 				if (formPass.length() == 4) {
+					/*
 					// UGLY: register new users if they do not exist and pass is 4 chars long
 					logger.info("no-such-user; creating user {}", formLogin);				
 					Usuario user = Usuario.createUser(formLogin, formPass, "user");
 					entityManager.persist(user);				
 					session.setAttribute("user", user);
 					getTokenForSession(session);
+					*/
 				} else {
 					logger.info("no such login: {}", formLogin);
 				}
@@ -85,6 +87,39 @@ public class HomeController {
 		// redirects to view from which login was requested
 		return "redirect:" + formSource;
 	}
+	
+	/**
+	+	 * Adds an user; return JSON indicating success or failure
+	+	 */
+		@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+		@ResponseBody
+		@Transactional // needed to allow DB change
+		public ResponseEntity<String> addUser(
+				@RequestParam("name") String name, @RequestParam("surname") String surname,
+				@RequestParam("email") String email, @RequestParam("username") String username,
+				@RequestParam("password") String password, @RequestParam("repassword") String repassword,
+				@RequestParam("adress") String adress, @RequestParam("phone") String phone,
+				@RequestParam("csrf") String token, HttpSession session,
+				HttpServletRequest request, Model model) {
+			
+			String formLogin = request.getParameter("login");
+			String formPass = request.getParameter("pass");
+			
+			if (password.equalsIgnoreCase(repassword)||! isTokenValid(session, token)) {
+				return new ResponseEntity<String>("Error: password error or bad auth", 
+						HttpStatus.FORBIDDEN);
+			} else {
+				//Password??
+				Usuario user = Usuario.createUser(formLogin, formPass, "user",name,  surname,  email,  adress, phone);
+				entityManager.persist(user);				
+				session.setAttribute("user", user);
+				getTokenForSession(session);
+	
+				return new ResponseEntity<String>("Ok: user " + name + " added", 
+						HttpStatus.OK);
+			} 
+
+		}
 	
 	//XSS version begin
 	/**

@@ -310,22 +310,13 @@
 						</div>
 					</div>
 				</div>
-				<!-- End Main -->
-				<!-- Begin Footer -->
-				<div id="footer">
-					<p class="bottom-menu">
-						<a href="#" title="Inicio">Inicio</a><span>|</span><a
-							href="support.html" title="Soporte">Soporte</a><span>|</span><a
-							href="account.html" title="Mi cuenta">Mi cuenta</a><span>|</span><a
-							href="#" title="Tienda">Tienda</a><span>|</span><a
-							href="contact.html" title="Contacto">Contactar</a>
-					</p>
-					<p>
-						&copy; 2014 Last4One. Diseño original por <a
-							href="http://css-free-templates.com/">CSSFT</a>
-					</p>
-					<div class="cl">&nbsp;</div>
-				</div>
-				<!-- End Footer -->
-
-				</html>
+				<!-- End Shell -->
+			</div>
+			<!-- End Inner -->
+		</div>
+		<!-- End Wrapper -->
+	</div>
+	<!-- Begin Footer -->
+	<%@ include file="../fragments/footer.jspf"%>
+	<!-- End Footer -->
+</html>

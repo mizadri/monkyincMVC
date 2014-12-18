@@ -44,7 +44,7 @@ public class Usuario {
 		this.pedido = pedido;
 	}
 
-	public static Usuario createUser(String login, String pass, String role) {
+	public static Usuario createUser(String login, String pass, String role, String name, String surname, String email, String adress,String phone) {
 		Usuario u = new Usuario();
 		u.login = login;
 		Random r = new Random();
@@ -55,6 +55,11 @@ public class Usuario {
 		u.salt = byteArrayToHexString(saltBytes);
 		u.hashedAndSalted = generateHashedAndSalted(pass, u.salt);
 		u.role = role;
+		u.setNombre(name);
+		u.setApellido(surname);
+		u.setCorreo(email);
+		u.setDireccion(adress);
+		u.setTelefono(phone);
 		return u;
 	}
 	

@@ -15,10 +15,4 @@
 
 	<%@ include file="../fragments/debug.jspf"%>
 </div>
-</div>
-<!-- End Shell -->
-</div>
-<!-- End Inner -->
-</div>
-<!-- End Wrapper -->
 </body>

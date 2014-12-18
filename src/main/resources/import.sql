@@ -4,10 +4,10 @@ insert into Usuario values (2, 'Andrade','juanito@correo.com','Calle perla','95f
 INSERT INTO Pedido VALUES(1,2,60,0);
 INSERT INTO Pedido VALUES(2,1,35,1);
 INSERT INTO Pedido VALUES(3,2,90,2);
-INSERT INTO Pedido_Producto(1,2);
-INSERT INTO Pedido_Producto(2,1);
-INSERT INTO Pedido_Producto(3,3);
-INSERT INTO Producto(1,'camiseta',35,1);
-INSERT INTO Producto(2,'gorra',30,1);
-INSERT INTO Producto(3,'sudadera',45,1);
-INSERT INTO Tipo_producto(1,'ropa');
+INSERT INTO Pedido_Producto values(1,2);
+INSERT INTO Pedido_Producto values(2,1);
+INSERT INTO Pedido_Producto values(3,3);
+INSERT INTO Producto values(1,'camiseta',35,1);
+INSERT INTO Producto values(2,'gorra',30,1);
+INSERT INTO Producto values(3,'sudadera',45,1);
+INSERT INTO Tipo_producto values (1,'ropa');

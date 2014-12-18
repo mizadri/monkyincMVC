@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Tipo_producto {
+public class TipoProducto {
 	 
 	
 	private long id;
@@ -17,7 +17,7 @@ public class Tipo_producto {
 	private List<Producto> productos;
 	
 	@OneToMany(targetEntity=Pedido.class)
-	@JoinColumn(name="id")
+	@JoinColumn(name="tipo_id")
 	public List<Producto> getProductos() {
 		return productos;
 	}

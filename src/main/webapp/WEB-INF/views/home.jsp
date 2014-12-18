@@ -1,30 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<!DOCTYPE html>
-<html lang="en-ES">
-<head>
-<title>Last4One</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
-<link rel="stylesheet" href="resources/css/style.css" type="text/css"
-	media="all" />
-<script src="resources/js/jquery-1.6.2.min.js" type="text/javascript"
-	charset="utf-8"></script>
-<!--[if IE 6]>
-		<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript" charset="utf-8"></script>
-	<![endif]-->
-<script src="resources/js/jquery.jcarousel.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="resources/js/functions.js" type="text/javascript"
-	charset="utf-8"></script>
-</head>
+﻿<%@ include file="../fragments/header.jspf"%>
 <body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
 		<!-- Begin Inner -->
 		<div class="inner">
 			<!-- Begin Header -->
-			<%@ include file="../fragments/header.jspf"%>
+			<%-- 			<%@ include file="../fragments/header.jspf"%> --%>
 			<!-- End Header -->
 			<!-- Begin Shell -->
 			<div class="shell">
@@ -37,31 +18,30 @@
 							<li class="widget">
 								<h2>Categorias</h2>
 								<ul>
-									<li><a href="#" title="Categor&#237a 1">Categor&iacutea
-											1</a></li>
-									<li><a href="#" title="Categor&#237a 2">Categor&iacutea
+									<li><a href="#" title="Categoría 1">Categoría 1</a></li>
+									<li><a href="#" title="Categoría 2">Categoría
 											2</a></li>
-									<li><a href="#" title="Categor&#237a 3">Categor&iacutea
+									<li><a href="#" title="Categoría 3">Categoría
 											3</a></li>
-									<li><a href="#" title="Categor&#237a 4">Categor&iacutea
+									<li><a href="#" title="Categoría 4">Categoría
 											4</a></li>
-									<li><a href="#" title="Categor&#237a 5">Categor&iacutea
+									<li><a href="#" title="Categoría 5">Categoría
 											5</a></li>
-									<li><a href="#" title="Categor&#237a 6">Categor&iacutea
+									<li><a href="#" title="Categoría 6">Categoría
 											6</a></li>
-									<li><a href="#" title="Categor&#237a 7">Categor&iacutea
+									<li><a href="#" title="Categoría 7">Categoría
 											7</a></li>
-									<li><a href="#" title="Categor&#237a 8">Categor&iacutea
+									<li><a href="#" title="Categoría 8">Categoría
 											8</a></li>
-									<li><a href="#" title="Categor&#237a 9">Categor&iacutea
+									<li><a href="#" title="Categoría 9">Categoría
 											9</a></li>
-									<li><a href="#" title="Categor&#237a 10">Categor&iacutea
+									<li><a href="#" title="Categoría 10">Categoría
 											10</a></li>
-									<li><a href="#" title="Categor&#237a 11">Categor&iacutea
+									<li><a href="#" title="Categoría 11">Categoría
 											11</a></li>
-									<li><a href="#" title="Categor&#237a 12">Categor&iacutea
+									<li><a href="#" title="Categoría 12">Categoría
 											12</a></li>
-									<li class="last"><a href="#" title="Categor&#237a 13">Categor&iacutea
+									<li class="last"><a href="#" title="Categoría 13">Categoría
 											13</a></li>
 								</ul>
 							</li>
@@ -72,47 +52,47 @@
 								<div id="search">
 									<form action="#" method="get" accept-charset="utf-8">
 										<label>Palabras clave</label> <input type="text" class="blink"
-											name="keyword" /> <label>Categor&iacutea</label> <select
+											name="keyword" /> <label>Categoría</label> <select
 											size="1" name="category">
 											<option value="default">-- Seleccione
-												Categor&iacutea --</option>
-											<option value="category1">Categor&iacutea 1</option>
-											<option value="category2">Categor&iacutea 2</option>
-											<option value="category3">Categor&iacutea 3</option>
-											<option value="category4">Categor&iacutea 4</option>
-											<option value="category5">Categor&iacutea 5</option>
-											<option value="category6">Categor&iacutea 6</option>
-											<option value="category7">Categor&iacutea 7</option>
-											<option value="category8">Categor&iacutea 8</option>
-											<option value="category9">Categor&iacutea 9</option>
-											<option value="category10">Categor&iacutea 10</option>
-											<option value="category11">Categor&iacutea 11</option>
-											<option value="category12">Categor&iacutea 12</option>
-											<option value="category13">Categor&iacutea 13</option>
+												Categoría --</option>
+											<option value="category1">Categoría 1</option>
+											<option value="category2">Categoría 2</option>
+											<option value="category3">Categoría 3</option>
+											<option value="category4">Categoría 4</option>
+											<option value="category5">Categoría 5</option>
+											<option value="category6">Categoría 6</option>
+											<option value="category7">Categoría 7</option>
+											<option value="category8">Categoría 8</option>
+											<option value="category9">Categoría 9</option>
+											<option value="category10">Categoría 10</option>
+											<option value="category11">Categoría 11</option>
+											<option value="category12">Categoría 12</option>
+											<option value="category13">Categoría 13</option>
 										</select>
 										<div class="price">
 											<label>Precio</label> <select size="1" name="price">
-												<option value="10">&#8364 10</option>
-												<option value="20">&#8364 20</option>
-												<option value="30">&#8364 30</option>
-												<option value="40">&#8364 40</option>
-												<option value="50">&#8364 50</option>
-												<option value="60">&#8364 60</option>
-												<option value="70">&#8364 70</option>
-												<option value="80">&#8364 80</option>
-												<option value="90">&#8364 90</option>
-												<option value="100">&#8364 100</option>
+												<option value="10">€10</option>
+												<option value="20">€20</option>
+												<option value="30">€30</option>
+												<option value="40">€40</option>
+												<option value="50">€50</option>
+												<option value="60">€60</option>
+												<option value="70">€70</option>
+												<option value="80">€80</option>
+												<option value="90">€90</option>
+												<option value="100">€100</option>
 											</select> <label>to:</label> <select size="1" name="to">
-												<option value="50">&#8364 50</option>
-												<option value="60">&#8364 60</option>
-												<option value="70">&#8364 70</option>
-												<option value="80">&#8364 80</option>
-												<option value="90">&#8364 90</option>
-												<option value="100">&#8364 100</option>
-												<option value="200">&#8364 200</option>
-												<option value="300">&#8364 300</option>
-												<option value="400">&#8364 400</option>
-												<option value="500">&#8364 500</option>
+												<option value="50">€50</option>
+												<option value="60">€60</option>
+												<option value="70">€70</option>
+												<option value="80">€80</option>
+												<option value="90">€90</option>
+												<option value="100">€100</option>
+												<option value="200">€200</option>
+												<option value="300">€300</option>
+												<option value="400">€400</option>
+												<option value="500">€500</option>
 											</select>
 											<div class="cl">&nbsp;</div>
 										</div>
@@ -121,10 +101,10 @@
 										<div class="cl">&nbsp;</div>
 									</form>
 									<ul class="options">
-										<li><a href="#" title="Advanced search">B&uacutesqueda
+										<li><a href="#" title="Advanced search">Búsqueda
 												avanzada</a></li>
 										<li><a href="#" title="Contact Customer Support">Contactar
-												con atenci&oacuten al cliente</a></li>
+												con atención al cliente</a></li>
 									</ul>
 								</div>
 							</li>
@@ -253,7 +233,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Maece-nas et lectus aliquam nisi convallis pretium.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer m&aacutes</a>
+									<a href="#" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -270,7 +250,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Maece-nas et lectus aliquam nisi convallis pretium.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer m&aacutes</a>
+									<a href="#" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -287,7 +267,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Maece-nas et lectus aliquam nisi convallis pretium.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer m&aacutes</a>
+									<a href="#" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -304,7 +284,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 									Maece-nas et lectus aliquam nisi convallis pretium.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer m&aacutes</a>
+									<a href="#" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -316,10 +296,5 @@
 				<!-- End Main -->
 				<%@ include file="../fragments/footer.jspf"%>
 			</div>
-			<!-- End Shell -->
-		</div>
-		<!-- End Inner -->
-	</div>
-	<!-- End Wrapper -->
-</body>
-</html>
+
+			</html>

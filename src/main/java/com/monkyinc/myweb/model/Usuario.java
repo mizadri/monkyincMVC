@@ -35,7 +35,7 @@ public class Usuario {
 	private List<Pedido> pedido;
 	
 	@OneToMany(targetEntity=Pedido.class)
-	@JoinColumn(name="id")
+	@JoinColumn(name="usuario_id")
 	public List<Pedido> getPedido() {
 		return pedido;
 	}

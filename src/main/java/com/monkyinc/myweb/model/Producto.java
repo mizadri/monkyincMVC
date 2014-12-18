@@ -18,7 +18,7 @@ import javax.persistence.NamedQuery;
 public class Producto {
 	
 	private long id;
-	private Tipo_producto tipo;
+	private TipoProducto tipo;
 	private String descripcion;
 	private int precio;
 	private List<Pedido> pedido;
@@ -33,10 +33,10 @@ public class Producto {
 	}
 	
 	@ManyToOne(targetEntity=Producto.class)
-	public Tipo_producto getTipo() {
+	public TipoProducto getTipo() {
 		return tipo;
 	}
-	public void setTipo(Tipo_producto tipo) {
+	public void setTipo(TipoProducto tipo) {
 		this.tipo = tipo;
 	}
 	

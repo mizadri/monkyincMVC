@@ -403,3 +403,13 @@ button.submit:active {
 .popup input[type="text"]:hover, .popup input[type="password"]:hover {
     border-color: #555 #888 #888;
 }
+/*Estilo modo debug*/
+div#debug > div {
+	float: left;
+	font-size: 60%;
+	margin-left: 100px;
+}
+
+div#debug table {
+	border: 1px solid gray;
+}

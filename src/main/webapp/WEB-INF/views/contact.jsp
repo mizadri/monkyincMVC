@@ -50,14 +50,8 @@
 					<!-- End Content -->
 					<div class="cl">&nbsp;</div>
 
-				</div>
-				<!-- End Shell -->
-			</div>
-			<!-- End Inner -->
-		</div>
-		<!-- End Wrapper -->
-	</div>
-	<!-- Begin Footer -->
-	<%@ include file="../fragments/footer.jspf"%>
-	<!-- End Footer -->
-</html>
+					<!-- Begin Footer -->
+					<%@ include file="../fragments/footer.jspf"%>
+					<!-- End Footer -->
+
+					</html>

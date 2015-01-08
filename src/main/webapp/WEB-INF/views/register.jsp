@@ -108,39 +108,45 @@
 						<input id="name" name="name" placeholder="Nombres" required=""
 							tabindex="1" type="text">
 
-							<p class="contact">
-								<label for="surname">Apellidos</label>
-							</p> <input id="surname" name="surname" placeholder="Apellidos"
+						<p class="contact">
+							<label for="surname">Apellidos</label>
+						</p>
+						<input id="surname" name="surname" placeholder="Apellidos"
 							required="" tabindex="1" type="text">
-								<p class="contact">
-									<label for="email">E-mail</label>
-								</p> <input id="email" name="email" placeholder="example@domain.com"
-								required="" type="email">
+						<p class="contact">
+							<label for="email">E-mail</label>
+						</p>
+						<input id="email" name="email" placeholder="example@domain.com"
+							required="" type="email">
 
-									<p class="contact">
-										<label for="username">Crear nombre de usuario</label>
-									</p> <input id="username" name="username"
-									placeholder="Nombre de usuario" required="" tabindex="2"
-									type="text">
+						<p class="contact">
+							<label for="username">Crear nombre de usuario</label>
+						</p>
+						<input id="username" name="username"
+							placeholder="Nombre de usuario" required="" tabindex="2"
+							type="text">
 
-										<p class="contact">
-											<label for="password">Contraseña</label>
-										</p> <input type="password" id="password" name="password"
-										required="">
-											<p class="contact">
-												<label for="repassword">Confirme su contraseña</label>
-											</p> <input type="password" id="repassword" name="repassword"
-											required="">
-												<p class="contact">
-													<label for="adress">Dirección</label>
-												</p> <input id="adress" name="adress" placeholder="Dirección"
-												required="" tabindex="1" type="text">
-													<p class="contact">
-														<label for="phone">Teléfono</label>
-													</p> <input id="phone" name="phone" placeholder="Teléfono"
-													required="" type="text"> <br> <input
-															class="buttom" name="submit" id="submit" tabindex="5"
-															value="¡Registrarse!" type="submit">
+						<p class="contact">
+							<label for="password">Contraseña</label>
+						</p>
+						<input type="password" id="password" name="password" required="">
+						<p class="contact">
+							<label for="repassword">Confirme su contraseña</label>
+						</p>
+						<input type="password" id="repassword" name="repassword"
+							required="">
+						<p class="contact">
+							<label for="adress">Dirección</label>
+						</p>
+						<input id="adress" name="adress" placeholder="Dirección"
+							required="" tabindex="1" type="text">
+						<p class="contact">
+							<label for="phone">Teléfono</label>
+						</p>
+						<input id="phone" name="phone" placeholder="Teléfono" required=""
+							type="text"> <br> <input class="buttom"
+							name="submit" id="submit" tabindex="5" value="¡Registrarse!"
+							type="submit">
 					</form>
 				</div>
 
@@ -309,14 +315,8 @@
 				</div>
 				<!-- End Home Boxes -->
 			</div>
-			<!-- End Shell -->
-		</div>
-		<!-- End Inner -->
-	</div>
-	<!-- End Wrapper -->
-</div>
-<!-- Begin Footer -->
-<%@ include file="../fragments/footer.jspf"%>
-<!-- End Footer -->
-
-</html>
+			<!-- End Main -->
+			<!-- Begin Footer -->
+			<%@ include file="../fragments/footer.jspf"%>
+			<!-- End Footer -->
+			</html>

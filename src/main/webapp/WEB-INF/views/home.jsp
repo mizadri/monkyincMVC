@@ -126,7 +126,7 @@
 						<!-- End Slider -->
 						<!-- Begin Post -->
 						<div class="post">
-							<h2>&iexclBienvenidos a Last4One!</h2>
+							<h2>¡Bienvenidos a Last4One!</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Maecenas et lectus aliquam nisi convallis pretium. Aliquam
 								posuere com-modo sagittis. In sed massa eu felis pharetra
@@ -281,11 +281,7 @@
 					</div>
 					<!-- End Home Boxes -->
 				</div>
-				<!-- End Shell -->
-			</div>
-			<!-- End Inner -->
-		</div>
-		<!-- End Wrapper -->
-	</div>
-	<%@ include file="../fragments/footer.jspf"%>
-</html>
+				<!-- End Main -->
+				<%@ include file="../fragments/footer.jspf"%>
+
+				</html>

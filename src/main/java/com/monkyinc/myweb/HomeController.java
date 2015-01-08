@@ -89,6 +89,18 @@ public class HomeController {
 	}
 	
 	/**
+	 * Toggles debug mode
+	 */
+	@RequestMapping(value = "/debug", method = RequestMethod.GET)
+	public String debug(HttpSession session, HttpServletRequest request) {
+		String formDebug = request.getParameter("debug");
+		logger.info("Setting debug to {}", formDebug);
+		session.setAttribute("debug", 
+				"true".equals(formDebug) ? "true" : "false");
+		return "redirect:/";
+	}
+	
+	/**
 	+	 * Adds an user; return JSON indicating success or failure
 	+	 */
 		@RequestMapping(value = "/addUser", method = RequestMethod.POST)

@@ -126,13 +126,36 @@ public class HomeController {
 				entityManager.persist(user);				
 				session.setAttribute("user", user);
 				getTokenForSession(session);
-	
+			
 				return new ResponseEntity<String>("Ok: user " + name + " added", 
 						HttpStatus.OK);
 			} 
 
 		}
-	
+		//XSS version begin
+		/**
+		+	 * Delete a user; return JSON indicating success or failure
+		+	 */
+		@RequestMapping(value = "/editUser", method = RequestMethod.POST)
+		@Transactional // needed to allow DB change
+		public String editUser(@RequestParam("id") long id,
+				@RequestParam("csrf") String token, HttpSession session,
+				HttpServletRequest request, Model model) {
+			Usuario u = entityManager.find(Usuario.class, id);
+			String correo = request.getParameter("email");
+			u.setCorreo(correo);
+			model.addAttribute("u", u);
+			return "user";
+		}
+		
+		@RequestMapping(value = "/editUser", method = RequestMethod.GET)
+		@Transactional // needed to allow DB change
+		public String editUser(@RequestParam("id") long id, Model model, HttpSession session) {
+			Usuario u = entityManager.find(Usuario.class, id);
+			model.addAttribute("u", u);
+			return "user";
+		}			
+		
 	//XSS version begin
 	/**
 	+	 * Delete a user; return JSON indicating success or failure

@@ -25,6 +25,26 @@ public class Pedido {
 	private int cantidad;
 	private int precio;
 	private List<Producto> productos;
+	private Producto producto;
+	
+	@ManyToOne(targetEntity=Producto.class)
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public static Pedido setPedido(long id, Usuario usuario, int precio, int cantidad, Producto producto){
+		Pedido p = new Pedido();
+		p.setId(id);
+		p.setUsuario(usuario);
+		p.setPrecio(precio);
+		p.setCantidad(cantidad);
+		p.setProducto(producto);
+		return p;
+	}
 	
 	@Id
 	@GeneratedValue

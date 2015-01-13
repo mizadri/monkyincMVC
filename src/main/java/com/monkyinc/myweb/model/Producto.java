@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
@@ -23,11 +25,24 @@ public class Producto {
 	private int precio;
 	private List<Pedido> pedido;
 	
+	public static Producto createProducto(long id, String descripcion, int precio, int idTP, String tipoTP){
+		Producto p = new Producto();
+		p.setId(id);
+		p.setDescripcion(descripcion);
+		p.setPrecio(precio);
+		TipoProducto tp = new TipoProducto();
+		tp.setId(idTP);
+		tp.setTipo(tipoTP);
+		p.setTipo(tp);
+		return p;
+	}
+	
 	@Id
 	@GeneratedValue
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long producto_id) {
 		this.id = producto_id;
 	}
@@ -40,7 +55,8 @@ public class Producto {
 		this.tipo = tipo;
 	}
 	
-	@ManyToMany(targetEntity=Pedido.class, mappedBy="productos")
+	@OneToMany(targetEntity=Pedido.class)
+	@JoinColumn(name="id")
 	public List<Pedido> getPedido() {
 		return pedido;
 	}

@@ -14,17 +14,17 @@ public class TipoProducto {
 	
 	private long id;
 	private String tipo;
-	private List<Producto> productos;
+	//private List<Producto> productos;
 	
-	@OneToMany(targetEntity=Pedido.class)
-	@JoinColumn(name="tipo_id")
-	public List<Producto> getProductos() {
-		return productos;
-	}
+	//@OneToMany(targetEntity=Pedido.class)
+	//@JoinColumn(name="tipo_id")
+	//public List<Producto> getProductos() {
+		//return productos;
+	//}
 
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
-	}
+	//public void setProductos(List<Producto> productos) {
+		//this.productos = productos;
+	//}
 
 	@Id
 	@GeneratedValue

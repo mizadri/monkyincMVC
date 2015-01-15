@@ -254,7 +254,7 @@ public class HomeController {
 		return "user";
 	}
 
-	@RequestMapping(value = "/editUsers", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/editUsers", method = RequestMethod.GET)
 	@Transactional
 	// needed to allow DB change
 	public String editUsers(Model model, HttpSession session) {
@@ -262,6 +262,8 @@ public class HomeController {
 		model.addAttribute("users",
 				entityManager.createQuery("select u from Usuario u")
 						.getResultList());
+		model.addAttribute("prefix", "../");
+		
 		return "users";
 	}
 

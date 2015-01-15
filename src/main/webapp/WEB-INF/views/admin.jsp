@@ -2,7 +2,7 @@
 <html lang="en-ES">
 <head>
 <meta charset="utf-8" />
-<title>Panel de administraci&oacuten</title>
+<title>Panel de administración</title>
 
 <link rel="stylesheet" href="resources/css/layout.css" type="text/css"
 	media="screen" />
@@ -54,11 +54,11 @@
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title">
-				<a href="index.html">Administraci&oacuten</a>
+				<a href="index.html">Administración</a>
 			</h1>
 			<h2 class="section_title">Panel de control</h2>
 			<div class="btn_view_site">
-				<a href="home.html">Ver sitio</a>
+				<a href="/myweb">Ver sitio</a>
 			</div>
 		</hgroup>
 	</header>
@@ -67,13 +67,13 @@
 	<section id="secondary_bar">
 		<div class="user">
 			<p>
-				Administrador(<a href="#">3 Mensajes</a>)
+				Administrador()
 			</p>
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
 			<article class="breadcrumbs">
-				<a href="home.html">Administraci&oacuten del sitio</a>
+				<a href="home.html">Administración del sitio</a>
 				<div class="breadcrumb_divider"></div>
 				<a class="current">Panel de control</a>
 			</article>
@@ -82,30 +82,40 @@
 	<!-- end of secondary bar -->
 
 	<aside id="sidebar" class="column">
-		<form class="quick_search">
+		<!-- <form class="quick_search">
 			<input type="text" value="Búsqueda rápida"
 				onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-		</form>
+		</form> -->
 		<hr />
-		<h3>Art&iacuteculos</h3>
+		<h3>Productos</h3>
 		<ul class="toggle">
-			<li class="icn_new_article"><a href="#">Nuevo art&iacuteculo</a></li>
-			<li class="icn_edit_article"><a href="#">Editar
-					art&iacuteculos</a></li>
-			<li class="icn_categories"><a href="#">Categorias</a></li>
-			<li class="icn_tags"><a href="#">Etiquetas</a></li>
+			<li class="icn_new_article"><a href="#">Nuevo producto</a></li>
+			<li class="icn_edit_article"><a href="#">Editar/borrar
+					productos</a></li>
+			<!--  <li class="icn_categories"><a href="#">Categorias</a></li> -->
+			<!--  <li class="icn_tags"><a href="#">Etiquetas</a></li> -->
 		</ul>
 		<h3>Usuarios</h3>
 		<ul class="toggle">
-			<li class="icn_add_user"><a href="#">A&ntildeadir usuario</a></li>
-			<li class="icn_view_users"><a href="#">Ver usuario</a></li>
-			<li class="icn_profile"><a href="#">Mi perfil</a></li>
+			<li class="icn_add_user"><a href="#">Añadir usuario</a></li>
+			<li class="icn_profile"><a href="#">Editar/borrar usuarios</a></li>
+<!-- 			<li class="icn_view_users"><a href="#">Ver usuario</a></li> -->
 		</ul>
-		<h3>Admin</h3>
+		<h3>Pedidos</h3>
 		<ul class="toggle">
-			<li class="icn_settings"><a href="#">Opciones</a></li>
-			<li class="icn_security"><a href="#">Seguridad</a></li>
-			<li class="icn_jump_back"><a href="#">Salir</a></li>
+			<li class="icn_new_article"><a href="#">Añadir pedido</a></li>
+			<li class="icn_settings"><a href="#">Editar/borrar pedidoss</a></li>
+<!-- 			<li class="icn_settings"><a href="#">Opciones</a></li> -->
+<!-- 			<li class="icn_security"><a href="#">Seguridad</a></li> -->
+<!-- 			<li class="icn_jump_back"><a href="#">Salir</a></li> -->
+		</ul>
+		<h3>Opciones</h3>
+		<ul class="toggle">
+<!-- 			<li class="icn_new_article"><a href="#">Añadir pedido</a></li> -->
+<!-- 			<li class="icn_settings"><a href="#">Editar/borrar pedidoss</a></li> -->
+<!-- 			<li class="icn_settings"><a href="#">Opciones</a></li> -->
+<!-- 			<li class="icn_security"><a href="#">Seguridad</a></li> -->
+ 			<li class="icn_jump_back"><a href="/myweb">Salir</a></li>
 		</ul>
 
 		<footer>
@@ -122,8 +132,8 @@
 
 	<section id="main" class="column">
 
-		<h4 class="alert_info">&iexclBienvenido al panel de
-			adiministraci&oacuten!</h4>
+		<h4 class="alert_info">¡Bienvenido al panel de
+			adiministración!</h4>
 
 		<article class="module width_full">
 			<header>
@@ -157,7 +167,7 @@
 		</article>
 		<!-- end of stats article -->
 
-		<article class="module width_3_quarter">
+		<!-- <article class="module width_3_quarter">
 			<header>
 				<h3 class="tabs_involved">Gestor de contenido</h3>
 				<ul class="tabs">
@@ -168,12 +178,12 @@
 
 			<div class="tab_container">
 				<div id="tab1" class="tab_content">
-					<table class="tablesorter" cellspacing="0">
+					<table class="tablesorter">
 						<thead>
 							<tr>
 								<th></th>
 								<th>Nombre</th>
-								<th>Categor&iacutea</th>
+								<th>Categoría</th>
 								<th>Creado el</th>
 								<th>Acciones</th>
 							</tr>
@@ -232,10 +242,10 @@
 						</tbody>
 					</table>
 				</div>
-				<!-- end of #tab1 -->
+				end of #tab1
 
 				<div id="tab2" class="tab_content">
-					<table class="tablesorter" cellspacing="0">
+					<table class="tablesorter">
 						<thead>
 							<tr>
 								<th></th>
@@ -300,13 +310,13 @@
 					</table>
 
 				</div>
-				<!-- end of #tab2 -->
+				end of #tab2
 
 			</div>
-			<!-- end of .tab_container -->
+			end of .tab_container
 
 		</article>
-		<!-- end of content manager article -->
+		end of content manager article
 
 		<article class="module width_quarter">
 			<header>
@@ -359,31 +369,31 @@
 				</form>
 			</footer>
 		</article>
-		<!-- end of messages article -->
+		end of messages article -->
 
 		<div class="clear"></div>
 
-		<article class="module width_full">
+		<!-- <article class="module width_full">
 			<header>
-				<h3>Publicar un nuevo art&iacuteculo</h3>
+				<h3>Publicar un nuevo artículo</h3>
 			</header>
 			<div class="module_content">
 				<fieldset>
-					<label>T&iacutetulo</label> <input type="text">
+					<label>Título</label> <input type="text">
 				</fieldset>
 				<fieldset>
 					<label>Contenido</label>
 					<textarea rows="12"></textarea>
 				</fieldset>
 				<fieldset style="width: 48%; float: left; margin-right: 3%;">
-					<!-- to make two field float next to one another, adjust values accordingly -->
-					<label>Categor&iacutea</label> <select style="width: 92%;">
-						<option>Art&iacuteculos</option>
+					to make two field float next to one another, adjust values accordingly
+					<label>Categoría</label> <select style="width: 92%;">
+						<option>Artículos</option>
 						<option>Tutoriales</option>
 					</select>
 				</fieldset>
 				<fieldset style="width: 48%; float: left;">
-					<!-- to make two field float next to one another, adjust values accordingly -->
+					to make two field float next to one another, adjust values accordingly
 					<label>Etiquetas</label> <input type="text" style="width: 92%;">
 				</fieldset>
 				<div class="clear"></div>
@@ -397,18 +407,18 @@
 						type="submit" value="Reiniciar">
 				</div>
 			</footer>
-		</article>
+		</article> -->
 		<!-- end of post new article -->
 
-		<h4 class="alert_warning">Un mensaje de alerta</h4>
+		<!-- <h4 class="alert_warning">Un mensaje de alerta</h4>
 
 		<h4 class="alert_error">Un mensaje de error</h4>
 
-		<h4 class="alert_success">Un mensaje de &eacutexito</h4>
+		<h4 class="alert_success">Un mensaje de éxito</h4>
 
 		<article class="module width_full">
 			<header>
-				<h3>Estilos b&aacutesicos</h3>
+				<h3>Estilos básicos</h3>
 			</header>
 			<div class="module_content">
 				<h1>Cabecera 1</h1>
@@ -435,7 +445,7 @@
 					<li>Cras mattis consectetur purus sit amet fermentum.</li>
 				</ul>
 			</div>
-		</article>
+		</article> -->
 		<!-- end of styles article -->
 		<div class="spacer"></div>
 	</section>

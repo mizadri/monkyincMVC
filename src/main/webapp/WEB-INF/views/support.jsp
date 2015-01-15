@@ -16,8 +16,6 @@
 	});
 </script>
 
-</head>
-<body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
 		<!-- Begin Inner -->

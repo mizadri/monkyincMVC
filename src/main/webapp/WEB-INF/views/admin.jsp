@@ -98,7 +98,7 @@
 		<h3>Usuarios</h3>
 		<ul class="toggle">
 			<li class="icn_add_user"><a href="#">Añadir usuario</a></li>
-			<li class="icn_profile"><a href="#">Editar/borrar usuarios</a></li>
+			<li class="icn_profile"><a href="/myweb/editUsers">Editar/borrar usuarios</a></li>
 <!-- 			<li class="icn_view_users"><a href="#">Ver usuario</a></li> -->
 		</ul>
 		<h3>Pedidos</h3>

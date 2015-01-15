@@ -3,19 +3,6 @@
 
 <h1>Editar usuario</h1>
 
-<h1>Usuarios del sistema</h1>
-<table class="users">
-<thead>
-	<tr><td>id<td>login<td>rol<td>hash<td>salt</tr>
-</thead>
-<tbody>
-	<c:forEach items="${us}" var="u">
-		<tr><td>${u.id}<td>${e:forHtmlContent(u.login)}<td>${u.role}
-		<td><button class="x" id="del_${u.id}">x</button></tr>
-	</c:forEach>
-</tbody>	
-</table>
-
 <form method="POST">
 		Inspeccionando usuario ${u.nombre}:
 		<br><br>

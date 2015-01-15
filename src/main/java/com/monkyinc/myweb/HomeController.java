@@ -246,12 +246,23 @@ public class HomeController {
 	@RequestMapping(value = "/editUser", method = RequestMethod.GET)
 	@Transactional
 	// needed to allow DB change
-	public String editUser(Model model, HttpSession session) {
+	public String editUser(@RequestParam("id") long id,Model model, HttpSession session) {
 
-		model.addAttribute("users",
-				entityManager.createQuery("select u from Usuario")
-						.getResultList());
+		Usuario u = entityManager.find(Usuario.class, id);
+		model.addAttribute("u", u);
+		
 		return "user";
+	}
+
+	@RequestMapping(value = "/editUsers", method = RequestMethod.GET)
+	@Transactional
+	// needed to allow DB change
+	public String editUsers(Model model, HttpSession session) {
+	
+		model.addAttribute("users",
+				entityManager.createQuery("select u from Usuario u")
+						.getResultList());
+		return "users";
 	}
 
 	// XSS version begin

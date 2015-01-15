@@ -1,0 +1,8 @@
+cd ..
+rm -rf monka
+cp -r monkyincMVC monka
+cd monkyincMVC/
+git reset --hard
+git pull origin master
+meld . ../monka 
+#Pasar los cambios con meld al nuevo directorio monkinMVC del antiguo monka

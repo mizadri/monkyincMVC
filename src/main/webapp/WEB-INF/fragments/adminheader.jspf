@@ -60,7 +60,7 @@ Standard header for all jsp pages in the site. Requires the following model vari
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title">
-				<a href="/myweb">Administración</a>
+				<a href="/myweb/admin">Administración</a>
 			</h1>
 			<h2 class="section_title">Panel de control</h2>
 			<div class="btn_view_site">
@@ -79,7 +79,7 @@ Standard header for all jsp pages in the site. Requires the following model vari
 		</div>
 		<div class="breadcrumbs_container">
 			<article class="breadcrumbs">
-				<a href="/myweb">Administración del sitio</a>
+				<a href="/myweb/admin">Administración del sitio</a>
 				<div class="breadcrumb_divider"></div>
 				<a class="current">Panel de control</a>
 			</article>

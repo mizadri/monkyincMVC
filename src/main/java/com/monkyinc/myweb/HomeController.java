@@ -163,20 +163,22 @@ public class HomeController {
 	 *            id of user to get photo from
 	 * @return
 	 */
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="/user/photo", method = RequestMethod.GET, produces
-	 * = MediaType.IMAGE_JPEG_VALUE) public byte[] userPhoto(@RequestParam("id")
-	 * String id) throws IOException { File f =
-	 * ContextInitializer.getFile("user", id); InputStream in = null; if
-	 * (f.exists()) { in = new BufferedInputStream(new FileInputStream(f)); }
-	 * else { in = new BufferedInputStream(
-	 * this.getClass().getClassLoader().getResourceAsStream
-	 * ("unknown-user.jpg")); }
-	 * 
-	 * return IOUtils.toByteArray(in); }
-	 */
+
+	@ResponseBody
+	@RequestMapping(value="/user/photo", method = RequestMethod.GET,
+	produces = MediaType.IMAGE_JPEG_VALUE) 
+	public byte[] userPhoto(@RequestParam("id")String id) throws IOException { 
+		File f = ContextInitializer.getFile("user", id);
+		InputStream in = null;
+		if(f.exists()){
+			in = new BufferedInputStream(new FileInputStream(f)); }
+		else {
+			in = new BufferedInputStream(this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));
+		}
+	  
+		return IOUtils.toByteArray(in);
+	}
+ 
 	/**
 	 * Uploads a photo for a user
 	 * 
@@ -199,12 +201,70 @@ public class HomeController {
 				stream.write(bytes);
 				stream.close();
 				return "You successfully uploaded "
-						+ id
+						+  id
 						+ " into "
 						+ ContextInitializer.getFile("user", id)
 								.getAbsolutePath() + "!";
 			} catch (Exception e) {
-				return "You failed to upload " + id + " => " + e.getMessage();
+				return "You failed to upload " +  id + " => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload a photo for " + id
+					+ " because the file was empty.";
+		}
+	}
+	
+	/**
+	 * Returns a users' photo
+	 * 
+	 * @param id
+	 *            id of user to get photo from
+	 * @return
+	 */
+
+	@ResponseBody
+	@RequestMapping(value="/product/photo", method = RequestMethod.GET,
+	produces = MediaType.IMAGE_JPEG_VALUE) 
+	public byte[] productPhoto(@RequestParam("id")String id) throws IOException { 
+		File f = ContextInitializer.getFile("product", id);
+		InputStream in = null;
+		if(f.exists()){
+			in = new BufferedInputStream(new FileInputStream(f)); }
+		else {
+			in = new BufferedInputStream(this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));
+		}
+	  
+		return IOUtils.toByteArray(in);
+	}
+ 
+	/**
+	 * Uploads a photo for a user
+	 * 
+	 * @param id
+	 *            of user
+	 * @param photo
+	 *            to upload
+	 * @return
+	 */
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
+	public @ResponseBody String handleFilePUpload(
+			@RequestParam("photo") MultipartFile photo,
+			@RequestParam("id") String id) {
+		if (!photo.isEmpty()) {
+			try {
+				byte[] bytes = photo.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(ContextInitializer.getFile("product",
+								id)));
+				stream.write(bytes);
+				stream.close();
+				return "You successfully uploaded "
+						+ id
+						+ " into "
+						+ ContextInitializer.getFile("product", id)
+								.getAbsolutePath() + "!";
+			} catch (Exception e) {
+				return "You failed to upload " +  id + " => " + e.getMessage();
 			}
 		} else {
 			return "You failed to upload a photo for " + id
@@ -243,6 +303,19 @@ public class HomeController {
 		return "user";
 	}
 	
+	
+
+	@RequestMapping(value = "/editUser", method = RequestMethod.GET)
+	@Transactional
+	// needed to allow DB change
+	public String editUser(@RequestParam("id") long id,Model model, HttpSession session) {
+
+		Usuario u = entityManager.find(Usuario.class, id);
+		model.addAttribute("u", u);
+		
+		return "user";
+	}
+	
 	/**
 	 * A user(used for admin page)
 	 */
@@ -273,17 +346,6 @@ public class HomeController {
 		model.addAttribute("u", u);
 
 		return "users";
-	}
-
-	@RequestMapping(value = "/editUser", method = RequestMethod.GET)
-	@Transactional
-	// needed to allow DB change
-	public String editUser(@RequestParam("id") long id,Model model, HttpSession session) {
-
-		Usuario u = entityManager.find(Usuario.class, id);
-		model.addAttribute("u", u);
-		
-		return "user";
 	}
 
 	@RequestMapping(value = "/admin/editUsers", method = RequestMethod.GET)

@@ -74,28 +74,31 @@
 								<th>Telefono</th>
 								<th>Direccion</th>
 								<th>Acciones</th>
+								<th>Foto</th>
 							</tr>
 						</thead>
 						<tbody>
 
 							<c:forEach items="${users}" var="u">
 								<tr id="r_${u.id}">
-										<td>${u.id}</td>
-										<td><input text="submit" name="role" value="${u.role}" size="10" /></td>
-										<td><input text="submit" name="login" value="${u.login}" size="12"/></td>
-										<td><input text="submit" name="nombre" value="${u.nombre}" size="10"/></td>
-										<td><input text="submit" name="apellido" value="${u.apellido}" size="10"/></td>
-										<td><input text="submit" name="correo" value="${u.correo}" /></td>
-										<td><input text="submit" name="telefono" value="${u.telefono}" size="12" /></td>
-										<td><input text="submit" name="direccion" value="${u.direccion}" /></td>
-										<input hidden="submit" name="id" value="${u.id}" />
-										<input hidden="submit" name="csrf" value="${csrf}" />
-										<td><button class="s" id="send_${u.id}">Confirmar</button>
-										<button class="x" id="del_${u.id}"> <image
-										src="${prefix}resources/css/images/icn_trash.png" alt="Trash"/></button>
-										<button class="edt" id="edt_${u.id}"> <image  
-										src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button></td></tr>
-									
+									<td>${u.id}</td>
+									<td><input text="submit" name="role" value="${u.role}" size="7" /></td>
+									<td><input text="submit" name="login" value="${u.login}" size="10"/></td>
+									<td><input text="submit" name="nombre" value="${u.nombre}" size="8"/></td>
+									<td><input text="submit" name="apellido" value="${u.apellido}" size="8"/></td>
+									<td><input text="submit" name="correo" value="${u.correo}" /></td>
+									<td><input text="submit" name="telefono" value="${u.telefono}" size="10" /></td>
+									<td><input text="submit" name="direccion" value="${u.direccion}" /></td>
+									<input hidden="submit" name="id" value="${u.id}" />
+									<input hidden="submit" name="csrf" value="${csrf}" />
+									<td><button class="s" id="send_${u.id}">Confirmar</button>
+									<button class="x" id="del_${u.id}"> <image
+									src="${prefix}resources/css/images/icn_trash.png" alt="Trash"/></button>
+									<button class="edt" id="edt_${u.id}"> <image  
+									src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button></td>
+									<td><img src="${prefix}user/photo?id=${u.id}" style="width:80px; height:80px;"/></td>
+								</tr>
+										
 									<!--  <td>${u.id}</td>
 									<td>${e:forHtmlContent(u.login)}</td>
 									<td>${u.role}</td>

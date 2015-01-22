@@ -1,9 +1,9 @@
 #!/bin/bash
 cd ..
-rm -rf monkaux
-cp -r monkyincMVC monkaux
+rm -rf auxmonky
+cp -r monkyincMVC auxmonky
 cd monkyincMVC/
 git reset --hard
 git pull origin master
-meld . ../monkaux
+meld . ../auxmonky
 #Pasar los cambios con meld al nuevo directorio monkinMVC del antiguo monka

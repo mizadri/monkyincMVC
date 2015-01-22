@@ -1,14 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-<title>Pedido</title>
+<title>Error</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="${prefix}resources/css/images/favicon.ico" />
 <link rel="stylesheet" href="${prefix}resources/css/style.css" type="text/css"media="all" />
 <script src="${prefix}resources/js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
-<!--[if IE 6]>
-		<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript" charset="utf-8"></script>
-	<![endif]-->
 <script src="${prefix}resources/js/jquery.jcarousel.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${prefix}resources/js/functions.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -84,22 +81,16 @@
 
 					<div id="content">
 						<!-- Begin Content -->
-						<div class="form">
-						<h1>Detalles del producto</h1>
-						<form action="${prefix}addPedido" method="post">
-							<img src="${prefix}resources/css/images/product-img${producto.id}.jpg" />
-							<br></br><label>Modelo: </label>   ${producto.descripcion}
-							<br><br><label>Precio: </label>  &#8364 ${producto.precio}
-							<br><br><label>Cantidad</label>
-							<input type="hidden" name="producto" value="${producto.id}"></input>
-							<input type="text" name="cantidad" required style="width:20px"></input><br><br>
-							<span class="button"><input name="submit" id="submit" value="Pedir" type="submit"></a></span>
-						</form>
-						</div>
+							<div class="form">
+								<br><h2>Error en la sesión!</h2>
+								<br><h3>No se ha encontrado una sesión, por favor
+								<a href="iniciosesion">entra</a> ó <a href="register">registrate</a> para poder comprar.</h3>
+							</div>	
+						
 						<!-- End Content -->
 					</div>
 					<div class="cl">&nbsp;</div>
-					
+
 					<!-- Begin Footer -->
 					<%@ include file="../fragments/footer.jspf"%>
 					<!-- End Footer -->

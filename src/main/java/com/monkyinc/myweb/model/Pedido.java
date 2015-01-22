@@ -14,8 +14,9 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="pedidoById",
-        query="select p from Pedido p where p.id = :idParam")
+    @NamedQuery(name="pedidoById", query="select p from Pedido p where p.id = :idParam"),
+    @NamedQuery(name="pedidoUser", query="select p from Pedido p where p.usuario.id = :uParam"),
+    @NamedQuery(name="pedido", query="select p from Pedido p")
 })
 public class Pedido {
 	

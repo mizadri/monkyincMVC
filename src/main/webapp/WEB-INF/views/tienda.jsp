@@ -6,15 +6,12 @@
 <link rel="shortcut icon" href="resources/css/images/favicon.ico" />
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"
 	media="all" />
-<script src="resources/js/jquery-1.6.2.min.js" type="text/javascript"
-	charset="utf-8"></script>
+<script src="resources/js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
 <!--[if IE 6]>
 		<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript" charset="utf-8"></script>
 	<![endif]-->
-<script src="resources/js/jquery.jcarousel.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="resources/js/functions.js" type="text/javascript"
-	charset="utf-8"></script>
+<script src="resources/js/jquery.jcarousel.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="resources/js/functions.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<!-- Begin Wrapper -->
@@ -89,30 +86,27 @@
 					<div id="content">
 						<!-- Begin Content -->
 						<div id="products">
-							<div class="product">
+						
+							<c:forEach items="${prods}" var="p">
+								<div class="product">
+									<input type="hidden" name="prodid" value="${p.id}"></input>
+									<a href="${prefix}pedido/${p.id}"><img src="resources/css/images/product-img${p.id}.jpg" alt="First TShirt Product"></a>
+									<div class="pr-info">
+										<h4>${p.descripcion}</h4>
+										<span class="pr-price"><span>$</span>${p.precio}</span>
+									</div>
+								</div>
+							</c:forEach>
+						
+							<!--<div class="product">
 								<a href="${prefix}pedido"><img src="resources/css/images/product-img2.jpg" alt="First TShirt Product"></a>
 								<div class="pr-info">
 									<h4>Not in here</h4>
 									<p>Un mundo divertido que mostrarle a todos!</p>
 									<span class="pr-price"><span>$</span>18.<sup>99</sup></span>
 								</div>
-							</div>
-							<div class="product">
-								<a href="#"><img src="resources/css/images/product-img3.jpg" alt="Second TShirt Product"></a>
-								<div class="pr-info">
-									<h4>Stussy</h4>
-									<p>Vuelvete alternativo con este último modelo</p>
-									<span class="pr-price"><span>$</span>18.<sup>99</sup></span>
-								</div>
-							</div>
-							<div class="product last">
-								<a href="#"><img src="resources/css/images/product-img1.jpg" alt="Second TShirt Product"></a>
-								<div class="pr-info">
-									<h4>Tools Trade</h4>
-									<p>Solo para verdaderos rockstars!</p>
-									<span class="pr-price"><span>$</span>18.<sup>99</sup></span>
-								</div>
-							</div>
+							</div>-->
+							
 							<br />
 							<div class="cl">&nbsp;</div>
 						</div>

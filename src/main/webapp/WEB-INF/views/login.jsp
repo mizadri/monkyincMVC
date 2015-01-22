@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-<title>Pedido</title>
+<title>Login</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="${prefix}resources/css/images/favicon.ico" />
 <link rel="stylesheet" href="${prefix}resources/css/style.css" type="text/css"media="all" />
@@ -85,21 +85,23 @@
 					<div id="content">
 						<!-- Begin Content -->
 						<div class="form">
-						<h1>Detalles del producto</h1>
-						<form action="${prefix}addPedido" method="post">
-							<img src="${prefix}resources/css/images/product-img${producto.id}.jpg" />
-							<br></br><label>Modelo: </label>   ${producto.descripcion}
-							<br><br><label>Precio: </label>  &#8364 ${producto.precio}
-							<br><br><label>Cantidad</label>
-							<input type="hidden" name="producto" value="${producto.id}"></input>
-							<input type="text" name="cantidad" required style="width:20px"></input><br><br>
-							<span class="button"><input name="submit" id="submit" value="Pedir" type="submit"></a></span>
-						</form>
+						<br><h1>Inicio de sesión</h1><br><br><br>
+							<form action="${prefix}login" id="contactform" method="post">
+								<p class="contact"><label for="login">Usuario</label></p>
+								<input id="login" name="login" placeholder="Usuario" required type="text">
+								<p class="contact"><label for="pass">Contraseña</label></p>
+								<input id="pass" name="pass" placeholder="********" required type="password">
+								<br><br>
+								<input class="buttom" name="submit" id="submit" value="Entrar" type="submit">
+								<input type="hidden" name="csrf" value="${csrf}" />
+								<input type="hidden" id="source" name="source" value="${requestScope['javax.servlet.forward.servlet_path']}" />
+							</form>
 						</div>
+						
 						<!-- End Content -->
 					</div>
 					<div class="cl">&nbsp;</div>
-					
+
 					<!-- Begin Footer -->
 					<%@ include file="../fragments/footer.jspf"%>
 					<!-- End Footer -->

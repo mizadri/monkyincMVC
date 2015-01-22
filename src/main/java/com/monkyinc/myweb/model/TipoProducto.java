@@ -16,16 +16,23 @@ public class TipoProducto {
 	private String tipo;
 	//private List<Producto> productos;
 	
-	//@OneToMany(targetEntity=Pedido.class)
-	//@JoinColumn(name="tipo_id")
-	//public List<Producto> getProductos() {
-		//return productos;
-	//}
+	/*@OneToMany(targetEntity=Pedido.class)
+	@JoinColumn(name="tipo_id")
+	public List<Producto> getProductos() {
+		return productos;
+	}
 
-	//public void setProductos(List<Producto> productos) {
-		//this.productos = productos;
-	//}
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}*/
 
+	public static TipoProducto createTipoProd(long id, String tipo){
+		TipoProducto tp = new TipoProducto();
+		tp.setId(id);
+		tp.setTipo(tipo);
+		return tp;
+	}
+	
 	@Id
 	@GeneratedValue
 	public long getId(){

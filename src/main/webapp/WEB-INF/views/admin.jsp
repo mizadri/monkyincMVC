@@ -327,5 +327,3 @@
 	<!-- Begin Footer -->
 	<%@ include file="../fragments/adminfooter.jspf"%>
 	<!-- End Footer -->
-
-	</html>

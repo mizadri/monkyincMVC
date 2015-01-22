@@ -14,31 +14,31 @@ Standard header for all jsp pages in the site. Requires the following model vari
 <html>
 <head>
 <title>${pageTitle}</title>
-<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
+<link rel="shortcut icon" href="${prefix}resources/css/images/favicon.ico" />
 <link rel="stylesheet"
 	href="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.css">
 <script
 	src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 <script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="${prefix}resources/css/main.css">
+<%-- <link rel="stylesheet" href="${prefix}resources/css/main.css"> --%>
 <%-- pageExtraScripts --%>
-<script src="resources/js/jquery-1.6.2.min.js" type="text/javascript"
+<script src="${prefix}resources/js/jquery-1.6.2.min.js" type="text/javascript"
 	charset="utf-8"></script>
 <!--[if IE 6]>
 		<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript" charset="utf-8"></script>
 	<![endif]-->
-<script src="resources/js/jquery.jcarousel.min.js"
+<script src="${prefix}resources/js/jquery.jcarousel.min.js"
 	type="text/javascript" charset="utf-8"></script>
-<script src="resources/js/functions.js" type="text/javascript"
+<script src="${prefix}resources/js/functions.js" type="text/javascript"
 	charset="utf-8"></script>
-<script src="resources/js/jquery.validate.js" type="text/javascript"
+<script src="${prefix}resources/js/jquery.validate.js" type="text/javascript"
 	charset="utf-8"></script>
-<link href="resources/js/jquery-ui-1.11.2/jquery-ui.min.css"
+<link href="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.css"
 	rel="stylesheet" />
-<script src="resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
-<script src="resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+<script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+<script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
 <%-- pageExtraCSS --%>
-<link rel="stylesheet" href="resources/css/style.css" type="text/css"
+<link rel="stylesheet" href="${prefix}resources/css/style.css" type="text/css"
 	media="all" />
 </head>
 <body>

@@ -214,7 +214,7 @@ public class HomeController {
 
 	// XSS version begin
 	/**
-	 * + * Delete a user; return JSON indicating success or failure +
+	 * A user(used for admin page)
 	 */
 	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
 	@Transactional
@@ -241,6 +241,38 @@ public class HomeController {
 		model.addAttribute("u", u);
 
 		return "user";
+	}
+	
+	/**
+	 * A user(used for admin page)
+	 */
+	@RequestMapping(value = "/admin/editUser", method = RequestMethod.POST)
+	@Transactional
+	// needed to allow DB change
+	public String editUserAdmin(@RequestParam("id") long id,
+			@RequestParam("csrf") String token, HttpSession session,
+			HttpServletRequest request, Model model) {
+
+		Usuario u = entityManager.find(Usuario.class, id);
+
+		String role = request.getParameter("role");
+		u.setRole(role);
+		String login = request.getParameter("login");
+		u.setLogin(login);
+		String nombre = request.getParameter("nombre");
+		u.setNombre(nombre);
+		String apellido = request.getParameter("apellido");
+		u.setApellido(apellido);
+		String correo = request.getParameter("correo");
+		u.setCorreo(correo);
+		String telefono = request.getParameter("telefono");
+		u.setTelefono(telefono);
+		String direccion = request.getParameter("direccion");
+		u.setDireccion(direccion);
+
+		model.addAttribute("u", u);
+
+		return "users";
 	}
 
 	@RequestMapping(value = "/editUser", method = RequestMethod.GET)
@@ -271,7 +303,7 @@ public class HomeController {
 	/**
 	 * Delete a user; return JSON indicating success or failure
 	 */
-	@RequestMapping(value = "/delUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/delUser", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
 	// needed to allow DB change

@@ -1,72 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
-<head>
-<title>Perfil</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="${prefix}resources/css/images/favicon.ico" />
-<link rel="stylesheet" href="${prefix}resources/css/style.css" type="text/css"media="all" />
-<script src="${prefix}resources/js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${prefix}resources/js/jquery.jcarousel.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${prefix}resources/js/functions.js" type="text/javascript" charset="utf-8"></script>
-<link href="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.css" rel="stylesheet">
-<script src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
-<script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$(".tabs").tabs();
-	});
-	
-	$(function() {
-		$(".s").click(function() {
-			var id = $(this).attr("id").substring("send_".length);
-			console.log("sendin", id);
-			sendPedido(id);
-		});	
-		$(".edt").click(function() {
-			var id = $(this).attr("id").substring("edt_".length);
-			$("input").attr("disabled", "disabled");
-			$(this).parent().parent().find("input").removeAttr("disabled");
-		});
-		
-		$(".editpedido").attr("disabled", "disabled");
-	});
-	
-	function sendPedido(id){
-		var tr = $("#r_"+id);
-		$.post("editPedido", 
-		{
-			id : id,
-			cantidad : tr.children().children()[0].value,
-			prod_id : $("#productoid"+id).val()
-		},
-		
-		function(data) {
-			location.reload(true);//Forces reload from server
-		});
-	}
-	
-</script>
-
-<style>
-	table{
-		
-	}
-	th, td{
-		border: 2px solid black;
-		text-align: center;
-		padding: 10px;
-	}
-</style>
-
-</head>
+<%@ include file="../fragments/header.jspf"%>
 <body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
 		<!-- Begin Inner -->
 		<div class="inner">
-			<!-- Begin Header -->
-			<%@ include file="../fragments/header.jspf"%>
-			<!-- End Header -->
 			<!-- Begin Shell -->
 			<div class="shell">
 				<!-- Begin Main -->

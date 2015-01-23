@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -15,21 +13,14 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name="productoById",
-        query="select p from Producto p where p.id = :idParam"),
-    @NamedQuery(name="producto",
-    query="select p from Producto p")
+        query="select p from Pedido p where p.id = :idParam"),
+        @NamedQuery(name="delProduct",
+    	query="delete from Producto p where p.id= :idParam")
 })
 public class Producto {
 	
 	private long id;
 	private String tipo;
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 	private String descripcion;
 	private int precio;
 	private List<Pedido> pedido;
@@ -53,6 +44,14 @@ public class Producto {
 		this.id = producto_id;
 	}
 	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	/*
 	@ManyToOne(targetEntity=Producto.class)
 	public TipoProducto getTipo() {
 		return tipo;
@@ -60,7 +59,7 @@ public class Producto {
 	public void setTipo(TipoProducto tipo) {
 		this.tipo = tipo;
 	}
-	
+	*/
 	@OneToMany(targetEntity=Pedido.class)
 	@JoinColumn(name="id")
 	public List<Pedido> getPedido() {

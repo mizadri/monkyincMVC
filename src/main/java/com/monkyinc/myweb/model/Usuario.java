@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Random;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Usuario {
 	private String direccion;
 	private List<Pedido> pedido;
 	
-	@OneToMany(targetEntity=Pedido.class)
+	@OneToMany(targetEntity=Pedido.class, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="usuario_id")
 	public List<Pedido> getPedido() {
 		return pedido;

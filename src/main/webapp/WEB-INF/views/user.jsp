@@ -30,6 +30,13 @@
 		<input hidden="submit" name="csrf" value="${csrf}" />
 		<button type="submit" name="upload" value="ok">Actualizar</button>
 </form>
+<br><br>
+<h2>!Sube una foto de perfil¡</h2>
+<form method="POST" enctype="multipart/form-data" action="user">
+		Fichero a subir <input type="file" name="photo"><br />
+		<input hidden="submit" name="id" value="${u.id}" />
+		<button type="submit" name="upload" value="ok">Pulsa para subir esa foto</button>
+</form>
 
 </div>
 <%@ include file="../fragments/footer.jspf" %>

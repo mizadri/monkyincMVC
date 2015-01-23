@@ -6,9 +6,6 @@
 <link rel="shortcut icon" href="${prefix}resources/css/images/favicon.ico" />
 <link rel="stylesheet" href="${prefix}resources/css/style.css" type="text/css"media="all" />
 <script src="${prefix}resources/js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
-<!--[if IE 6]>
-		<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript" charset="utf-8"></script>
-	<![endif]-->
 <script src="${prefix}resources/js/jquery.jcarousel.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${prefix}resources/js/functions.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -99,10 +96,6 @@
 						<!-- End Content -->
 					</div>
 					<div class="cl">&nbsp;</div>
-					
-					<!-- Begin Footer -->
-					<%@ include file="../fragments/footer.jspf"%>
-					<!-- End Footer -->
 				</div>
 				<!-- End Shell -->
 			</div>

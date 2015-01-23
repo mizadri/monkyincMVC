@@ -91,21 +91,14 @@
 									<td><input text="submit" name="direccion" value="${u.direccion}" /></td>
 									<input hidden="submit" name="id" value="${u.id}" />
 									<input hidden="submit" name="csrf" value="${csrf}" />
-									<td><button class="s" id="send_${u.id}">Confirmar</button>
+									<td><button class="s" id="send_${u.id}">&#10004</button>
 									<button class="x" id="del_${u.id}"> <image
 									src="${prefix}resources/css/images/icn_trash.png" alt="Trash"/></button>
 									<button class="edt" id="edt_${u.id}"> <image  
 									src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button></td>
 									<td><img src="${prefix}user/photo?id=${u.id}" style="width:80px; height:80px;"/></td>
 								</tr>
-										
-									<!--  <td>${u.id}</td>
-									<td>${e:forHtmlContent(u.login)}</td>
-									<td>${u.role}</td>
-									<td>${u.correo}</td>
-									<td><input type="image" src="${prefix}resources/css/images/icn_edit.png" title="Edit"></input>
-										<input class="x" id="del_${u.id}" type="image" src="${prefix}resources/css/images/icn_trash.png" title="Trash"></input></td>-->
-								</tr>
+
 							</c:forEach>
 
 						</tbody>

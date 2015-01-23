@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import javax.persistence.EntityManager;
@@ -36,7 +35,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.monkyinc.myweb.model.Pedido;
 import com.monkyinc.myweb.model.Producto;
-import com.monkyinc.myweb.model.TipoProducto;
 import com.monkyinc.myweb.model.Usuario;
 
 import java.util.UUID;
@@ -124,9 +122,7 @@ public class HomeController {
 		return "redirect:/";
 	}
 
-	/**
-	 * Adds an user; return JSON indicating success or failure
-	 */
+	/*
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
@@ -157,7 +153,8 @@ public class HomeController {
 		}
 
 	}
-
+	*/
+//-------------------------------BEGIN:Adri---------------------------------------------
 	/**
 	 * Returns a users' photo
 	 * 
@@ -208,7 +205,65 @@ public class HomeController {
 						+ ContextInitializer.getFile("user", id)
 								.getAbsolutePath() + "!";
 			} catch (Exception e) {
-				return "You failed to upload " + id + " => " + e.getMessage();
+				return "You failed to upload " +  id + " => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload a photo for " + id
+					+ " because the file was empty.";
+		}
+	}
+	
+	/**
+	 * Returns a users' photo
+	 * 
+	 * @param id
+	 *            id of user to get photo from
+	 * @return
+	 */
+
+	@ResponseBody
+	@RequestMapping(value="/product/photo", method = RequestMethod.GET,
+	produces = MediaType.IMAGE_JPEG_VALUE) 
+	public byte[] productPhoto(@RequestParam("id")String id) throws IOException { 
+		File f = ContextInitializer.getFile("product", id);
+		InputStream in = null;
+		if(f.exists()){
+			in = new BufferedInputStream(new FileInputStream(f)); }
+		else {
+			in = new BufferedInputStream(this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));
+		}
+	  
+		return IOUtils.toByteArray(in);
+	}
+ 
+	/**
+	 * Uploads a photo for a user
+	 * 
+	 * @param id
+	 *            of user
+	 * @param photo
+	 *            to upload
+	 * @return
+	 */
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
+	public @ResponseBody String handleFilePUpload(
+			@RequestParam("photo") MultipartFile photo,
+			@RequestParam("id") String id) {
+		if (!photo.isEmpty()) {
+			try {
+				byte[] bytes = photo.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(ContextInitializer.getFile("product",
+								id)));
+				stream.write(bytes);
+				stream.close();
+				return "You successfully uploaded "
+						+ id
+						+ " into "
+						+ ContextInitializer.getFile("product", id)
+								.getAbsolutePath() + "!";
+			} catch (Exception e) {
+				return "You failed to upload " +  id + " => " + e.getMessage();
 			}
 		} else {
 			return "You failed to upload a photo for " + id
@@ -216,9 +271,9 @@ public class HomeController {
 		}
 	}
 
-	// XSS version begin
+	
 	/**
-	 * + * Delete a user; return JSON indicating success or failure +
+	 * Edit a single user(used for admin page)
 	 */
 	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
 	@Transactional
@@ -254,7 +309,7 @@ public class HomeController {
 	@RequestMapping(value = "/editUser", method = RequestMethod.GET)
 	@Transactional
 	// needed to allow DB change
-	public String editUser(Model model, HttpSession session) {
+	public String editUser(@RequestParam("id") long id,Model model, HttpSession session) {
 
 		Usuario u = entityManager.find(Usuario.class, id);
 		model.addAttribute("u", u);
@@ -300,98 +355,96 @@ public class HomeController {
 	public String editUsers(Model model, HttpSession session) {
 	
 		model.addAttribute("users",
-				entityManager.createQuery("select u from Usuario")
+				entityManager.createQuery("select u from Usuario u")
 						.getResultList());
-		return "user";
+		model.addAttribute("prefix", "../");
+
+		return "users";
+	}
+	
+	// XSS version begin
+		/**
+		 * Delete a user; return JSON indicating success or failure
+		 */
+		@RequestMapping(value = "/admin/delUser", method = RequestMethod.POST)
+		@ResponseBody
+		@Transactional
+		// needed to allow DB change
+		public ResponseEntity<String> bookAuthors(@RequestParam("id") long id,
+				@RequestParam("csrf") String token, HttpSession session) {
+			if (!isAdmin(session) || !isTokenValid(session, token)) {
+				return new ResponseEntity<String>(
+						"Error: no such user or bad auth", HttpStatus.FORBIDDEN);
+			} else if (entityManager.createNamedQuery("delUser")
+					.setParameter("idParam", id).executeUpdate() == 1) {
+				return new ResponseEntity<String>("Ok: user " + id + " removed",
+						HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("Error: no such user",
+						HttpStatus.BAD_REQUEST);
+			}
+		}
+		
+	/**
+	 * A user(used for admin page)
+	 */
+	@RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
+	@Transactional
+	// needed to allow DB change
+	public String editProductAdmin(@RequestParam("id") long id,
+			@RequestParam("csrf") String token, HttpSession session,
+			HttpServletRequest request, Model model) {
+
+		Producto p = entityManager.find(Producto.class, id);
+		
+		String tipo = request.getParameter("tipo");
+		p.setTipo(tipo);
+		String descripcion = request.getParameter("descripcion");
+		p.setDescripcion(descripcion);
+		int precio = Integer.parseInt(request.getParameter("precio").toString());
+		p.setPrecio(precio);
+
+		model.addAttribute("p", p);
+
+		return "products";
 	}
 
-	// XSS version begin
+	@RequestMapping(value = "/admin/editProducts", method = RequestMethod.GET)
+	@Transactional
+	// needed to allow DB change
+	public String editProducts(Model model, HttpSession session) {
+	
+		model.addAttribute("products",
+				entityManager.createQuery("select p from Producto p")
+						.getResultList());
+		model.addAttribute("prefix", "../");
+		
+		return "products";
+	}
+	
+
 	/**
 	 * Delete a user; return JSON indicating success or failure
 	 */
-	@RequestMapping(value = "/admin/delUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/delProduct", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
 	// needed to allow DB change
-	public ResponseEntity<String> bookAuthors(@RequestParam("id") long id,
+	public ResponseEntity<String> delProduct(@RequestParam("id") long id,
 			@RequestParam("csrf") String token, HttpSession session) {
 		if (!isAdmin(session) || !isTokenValid(session, token)) {
 			return new ResponseEntity<String>(
 					"Error: no such user or bad auth", HttpStatus.FORBIDDEN);
-		} else if (entityManager.createNamedQuery("delUser")
+		} else if (entityManager.createNamedQuery("delProduct")
 				.setParameter("idParam", id).executeUpdate() == 1) {
-			return new ResponseEntity<String>("Ok: user " + id + " removed",
+			return new ResponseEntity<String>("Ok: product " + id + " removed",
 					HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Error: no such user",
 					HttpStatus.BAD_REQUEST);
 		}
 	}
-
-	// -------------------Paulo metodos-------------------------
-	@RequestMapping(value = "/tienda", method = RequestMethod.GET)
-	public String tienda(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		return "tienda";
-	}
-
-	@RequestMapping(value = "/pedido", method = RequestMethod.GET)
-	public String pedido(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		Producto p = Producto
-				.createProducto(1, "NOT IN HERE", 18, 1, "Playera");
-		model.addAttribute("producto", p);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		return "pedido";
-	}
-
-	/**
-	 * Adds an order; return JSON indicating success or failure
-	 */
-	@RequestMapping(value = "/addPedido", method = RequestMethod.POST)
-	@ResponseBody
-	@Transactional
-	// needed to allow DB change
-	public String addPedido(@RequestParam("producto") long producto_id,
-			@RequestParam("cantidad") int cantidad, Model model,
-			HttpSession session) {
-
-		long user_id = ((Usuario) session.getAttribute("user")).getId();
-
-		Usuario user = entityManager.find(Usuario.class, user_id);
-		Producto product = entityManager.find(Producto.class, producto_id);
-
-		int precio = product.getPrecio();
-		int total = precio * cantidad;
-
-		Pedido p = Pedido.setPedido(0, user, total, cantidad, product);
-
-		entityManager.persist(p);
-		model.addAttribute("pedido", p);
-
-		return "pedido agregado";
-
-	}
-
-	// -------------------Paulo metodos-------------------------
+	//-------------------------------END:Adri---------------------------------------------
 
 	/**
 	 * + * Checks the anti-csrf token for a session against a value + * @param
@@ -452,10 +505,8 @@ public class HomeController {
 		model.addAttribute("prefix", "../");
 		return "producto";
 	}
-
-	/**
-	 * Displays pedido details
-	 */
+/*
+	
 	@RequestMapping(value = "/pedido", method = RequestMethod.GET)
 	public String pedido(@PathVariable("id") long id, Model model) {
 		try {
@@ -469,7 +520,7 @@ public class HomeController {
 		model.addAttribute("prefix", "../");
 		return "pedido";
 	}
-
+*/
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -503,6 +554,7 @@ public class HomeController {
 		model.addAttribute("pageTitle", "Administracion");
 		return "admin";
 	}
+	/*
 
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	public String account(Locale locale, Model model) {
@@ -518,6 +570,7 @@ public class HomeController {
 		model.addAttribute("pageTitle", "Mi cuenta");
 		return "account";
 	}
+	*/
 
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public String contact(Locale locale, Model model) {
@@ -564,40 +617,8 @@ public class HomeController {
 		return "support";
 	}
 
-	/******************* Lenin *********************/
-	
-	@RequestMapping(value = "/editPedido", method = RequestMethod.POST)
-	@Transactional
-	public String editPedido(@RequestParam("id") long id_pedido,
-			HttpSession session, HttpServletRequest request, Model model) {
-
-		long user_id = ((Usuario) session.getAttribute("user")).getId();
-		Pedido p = entityManager.find(Pedido.class, id_pedido);
-		
-		//long prod_id = p.getProducto().getId();
-		long prod_id = Integer.parseInt(request.getParameter("prod_id"));
-		
-		int nCantidad = Integer.parseInt(request.getParameter("cantidad"));
-		p.setCantidad(nCantidad);
-		
-		int precio = p.getProducto().getPrecio();
-		int nPrecio = precio*nCantidad;
-		p.setPrecio(nPrecio);
-		
-		Usuario user = entityManager.find(Usuario.class, user_id);
-		p.setUsuario(user);
-		
-		Producto product = entityManager.find(Producto.class, prod_id);
-		p.setProducto(product);
-
-		model.addAttribute("pedido", p);
-
-		return "actualizado";
-	}
-
-	/********************** Lenin ***************************/
-
 	// -------------------------Paulo------------------------- //
+	
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
 	public String addUser(@RequestParam("name") String name,
@@ -652,6 +673,26 @@ public class HomeController {
 
 		return "pedido";
 	}
+	
+	@RequestMapping(value = "/pedido", method = RequestMethod.GET)
+	public String pedido(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		Producto p = Producto
+				.createProducto(1, "NOT IN HERE", 18, "Playera");
+		model.addAttribute("producto", p);
+
+		model.addAttribute("serverTime", formattedDate);
+
+		return "pedido";
+	}
+
 
 	@RequestMapping(value = "/addPedido", method = RequestMethod.POST)
 	@Transactional
@@ -785,10 +826,38 @@ public class HomeController {
 		return "badpassword";
 	}
 
-	// -------------------------Paulo------------------------- //
-
 
 	/*******************Lenin*********************/
+	
+	@RequestMapping(value = "/editPedido", method = RequestMethod.POST)
+	@Transactional
+	public String editPedido(@RequestParam("id") long id_pedido,
+			HttpSession session, HttpServletRequest request, Model model) {
+
+		long user_id = ((Usuario) session.getAttribute("user")).getId();
+		Pedido p = entityManager.find(Pedido.class, id_pedido);
+		
+		//long prod_id = p.getProducto().getId();
+		long prod_id = Integer.parseInt(request.getParameter("prod_id"));
+		
+		int nCantidad = Integer.parseInt(request.getParameter("cantidad"));
+		p.setCantidad(nCantidad);
+		
+		int precio = p.getProducto().getPrecio();
+		int nPrecio = precio*nCantidad;
+		p.setPrecio(nPrecio);
+		
+		Usuario user = entityManager.find(Usuario.class, user_id);
+		p.setUsuario(user);
+		
+		Producto product = entityManager.find(Producto.class, prod_id);
+		p.setProducto(product);
+
+		model.addAttribute("pedido", p);
+
+		return "actualizado";
+	}
+
 		/**
 	 * A user(used for admin page)
 	 */

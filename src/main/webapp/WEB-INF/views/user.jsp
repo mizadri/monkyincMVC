@@ -31,7 +31,7 @@
 		<button type="submit" name="upload" value="ok">Actualizar</button>
 </form>
 <br><br>
-<h2>!Sube una foto de perfilÂ¡</h2>
+<h2>!Sube una foto de perfil¡</h2>
 <form method="POST" enctype="multipart/form-data" action="user">
 		Fichero a subir <input type="file" name="photo"><br />
 		<input hidden="submit" name="id" value="${u.id}" />

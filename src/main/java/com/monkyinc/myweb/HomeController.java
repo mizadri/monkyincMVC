@@ -273,7 +273,7 @@ public class HomeController {
 
 	
 	/**
-	 * Edit a single user(used for admin page)
+	 * Edit a single user
 	 */
 	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
 	@Transactional
@@ -327,39 +327,52 @@ public class HomeController {
 			@RequestParam("csrf") String token, HttpSession session,
 			HttpServletRequest request, Model model) {
 
-		Usuario u = entityManager.find(Usuario.class, id);
+		if (!isAdmin(session) || !isTokenValid(session, token)) {
+			return "hazLogin";
+		} 
+		else{
+			
+			Usuario u = entityManager.find(Usuario.class, id);
 
-		String role = request.getParameter("role");
-		u.setRole(role);
-		String login = request.getParameter("login");
-		u.setLogin(login);
-		String nombre = request.getParameter("nombre");
-		u.setNombre(nombre);
-		String apellido = request.getParameter("apellido");
-		u.setApellido(apellido);
-		String correo = request.getParameter("correo");
-		u.setCorreo(correo);
-		String telefono = request.getParameter("telefono");
-		u.setTelefono(telefono);
-		String direccion = request.getParameter("direccion");
-		u.setDireccion(direccion);
+			String role = request.getParameter("role");
+			u.setRole(role);
+			String login = request.getParameter("login");
+			u.setLogin(login);
+			String nombre = request.getParameter("nombre");
+			u.setNombre(nombre);
+			String apellido = request.getParameter("apellido");
+			u.setApellido(apellido);
+			String correo = request.getParameter("correo");
+			u.setCorreo(correo);
+			String telefono = request.getParameter("telefono");
+			u.setTelefono(telefono);
+			String direccion = request.getParameter("direccion");
+			u.setDireccion(direccion);
 
-		model.addAttribute("u", u);
-
-		return "users";
+			model.addAttribute("u", u);
+						
+			return "users";
+		}
 	}
 
 	@RequestMapping(value = "/admin/editUsers", method = RequestMethod.GET)
 	@Transactional
 	// needed to allow DB change
 	public String editUsers(Model model, HttpSession session) {
-	
-		model.addAttribute("users",
-				entityManager.createQuery("select u from Usuario u")
-						.getResultList());
+
 		model.addAttribute("prefix", "../");
 
-		return "users";
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+			
+			model.addAttribute("users",
+					entityManager.createQuery("select u from Usuario u")
+							.getResultList());			
+			return "users";
+		}
+		
 	}
 	
 	// XSS version begin
@@ -375,13 +388,16 @@ public class HomeController {
 			if (!isAdmin(session) || !isTokenValid(session, token)) {
 				return new ResponseEntity<String>(
 						"Error: no such user or bad auth", HttpStatus.FORBIDDEN);
-			} else if (entityManager.createNamedQuery("delUser")
-					.setParameter("idParam", id).executeUpdate() == 1) {
-				return new ResponseEntity<String>("Ok: user " + id + " removed",
+			} 
+			else{ 
+				
+				if (entityManager.createNamedQuery("delUser").setParameter("idParam", id).executeUpdate() == 1) {
+					return new ResponseEntity<String>("Ok: user " + id + " removed",
 						HttpStatus.OK);
-			} else {
-				return new ResponseEntity<String>("Error: no such user",
+				} else {
+					return new ResponseEntity<String>("Error: no such user",
 						HttpStatus.BAD_REQUEST);
+				}
 			}
 		}
 		
@@ -395,18 +411,23 @@ public class HomeController {
 			@RequestParam("csrf") String token, HttpSession session,
 			HttpServletRequest request, Model model) {
 
-		Producto p = entityManager.find(Producto.class, id);
-		
-		String tipo = request.getParameter("tipo");
-		p.setTipo(tipo);
-		String descripcion = request.getParameter("descripcion");
-		p.setDescripcion(descripcion);
-		int precio = Integer.parseInt(request.getParameter("precio").toString());
-		p.setPrecio(precio);
+		if (!isAdmin(session) || !isTokenValid(session, token)) {
+			return "hazLogin";
+		} 
+		else{
+			Producto p = entityManager.find(Producto.class, id);
+			
+			String tipo = request.getParameter("tipo");
+			p.setTipo(tipo);
+			String descripcion = request.getParameter("descripcion");
+			p.setDescripcion(descripcion);
+			int precio = Integer.parseInt(request.getParameter("precio").toString());
+			p.setPrecio(precio);
 
-		model.addAttribute("p", p);
+			model.addAttribute("p", p);
 
-		return "products";
+			return "products";
+		}
 	}
 
 	@RequestMapping(value = "/admin/editProducts", method = RequestMethod.GET)
@@ -414,15 +435,20 @@ public class HomeController {
 	// needed to allow DB change
 	public String editProducts(Model model, HttpSession session) {
 	
-		model.addAttribute("products",
-				entityManager.createQuery("select p from Producto p")
-						.getResultList());
 		model.addAttribute("prefix", "../");
-		
-		return "products";
+
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+			
+			model.addAttribute("products",
+					entityManager.createQuery("select p from Producto p")
+							.getResultList());			
+			return "products";
+		}
 	}
 	
-
 	/**
 	 * Delete a user; return JSON indicating success or failure
 	 */
@@ -435,15 +461,64 @@ public class HomeController {
 		if (!isAdmin(session) || !isTokenValid(session, token)) {
 			return new ResponseEntity<String>(
 					"Error: no such user or bad auth", HttpStatus.FORBIDDEN);
-		} else if (entityManager.createNamedQuery("delProduct")
-				.setParameter("idParam", id).executeUpdate() == 1) {
-			return new ResponseEntity<String>("Ok: product " + id + " removed",
+		} 
+		else{ 
+			
+			if (entityManager.createNamedQuery("delProduct").setParameter("idParam", id).executeUpdate() == 1) {
+				return new ResponseEntity<String>("Ok: product " + id + " removed",
 					HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>("Error: no such user",
+			} else {
+				return new ResponseEntity<String>("Error: no such product",
 					HttpStatus.BAD_REQUEST);
+			}
 		}
 	}
+	
+	@RequestMapping(value = "/admin/addProduct", method = RequestMethod.GET)
+	@Transactional
+	public String addProductG(Locale locale,Model model,HttpSession session) {
+		model.addAttribute("prefix", "../");
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+					DateFormat.LONG, locale);
+			String formattedDate = dateFormat.format(date);
+			
+			model.addAttribute("serverTime", formattedDate);
+			
+			return "addProd";
+		}
+	}
+
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+	@Transactional
+	public String addProductP(
+			@RequestParam("tipo") String tipo,
+			@RequestParam("name") String descripcion,
+			@RequestParam("precio") int precio,
+			@RequestParam("csrf") String token,
+			HttpSession session, HttpServletRequest request, Model model) {
+	
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+
+			Producto prod = new Producto();
+			prod.setTipo(tipo);
+			prod.setDescripcion(descripcion);
+			prod.setPrecio(precio);
+			
+			entityManager.persist(prod);
+			
+			return "addProd";
+		}
+	}
+
+	
 	//-------------------------------END:Adri---------------------------------------------
 
 	/**
@@ -479,7 +554,6 @@ public class HomeController {
 		}
 	}
 
-	// XSS version begin
 	/**
 	 * Logout (also returns to home view).
 	 */
@@ -868,36 +942,47 @@ public class HomeController {
 			@RequestParam("csrf") String token, HttpSession session,
 			HttpServletRequest request, Model model) {
 
-		long user_id = ((Usuario) session.getAttribute("user")).getId();
-		Pedido p = entityManager.find(Pedido.class, id);
-		
-		
-		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-		p.setCantidad(cantidad);
-		int precio = Integer.parseInt(request.getParameter("precio"));
-		p.setPrecio(precio);
-		Usuario user = entityManager.find(Usuario.class, user_id);
-		p.setUsuario(user);
-		
-		long producto_id = p.getProducto().getId();
-		Producto product = entityManager.find(Producto.class,  producto_id);
-		p.setProducto(product);
+		if (!isAdmin(session) || !isTokenValid(session, token)) {
+			return "hazLogin";
+		} 
+		else{
+			long user_id = ((Usuario) session.getAttribute("user")).getId();
+			Pedido p = entityManager.find(Pedido.class, id);
+			
+			
+			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+			p.setCantidad(cantidad);
+			int precio = Integer.parseInt(request.getParameter("precio"));
+			p.setPrecio(precio);
+			Usuario user = entityManager.find(Usuario.class, user_id);
+			p.setUsuario(user);
+			
+			long producto_id = p.getProducto().getId();
+			Producto product = entityManager.find(Producto.class,  producto_id);
+			p.setProducto(product);
 
-		model.addAttribute("p", p);
-
-		return "pedidos";
+			model.addAttribute("p", p);
+			
+			return "pedidos";
+		}
 	}
 	@RequestMapping(value = "/admin/editPedidos", method = RequestMethod.GET)
 	@Transactional
 	// needed to allow DB change
 	public String editPedidos(Model model, HttpSession session) {
 	
-		model.addAttribute("pedidos",
-				entityManager.createQuery("select p from Pedido p")
-						.getResultList());
 		model.addAttribute("prefix", "../");
 		
-		return "pedidos";
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+			model.addAttribute("pedidos",
+					entityManager.createQuery("select p from Pedido p")
+							.getResultList());
+			
+			return "pedidos";
+		}
 	}
 /**********************Lenin***************************/
 

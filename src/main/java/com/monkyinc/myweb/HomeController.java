@@ -236,15 +236,7 @@ public class HomeController {
 		return IOUtils.toByteArray(in);
 	}
  
-	/**
-	 * Uploads a photo for a user
-	 * 
-	 * @param id
-	 *            of user
-	 * @param photo
-	 *            to upload
-	 * @return
-	 */
+	/*
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	public @ResponseBody String handleFilePUpload(
 			@RequestParam("photo") MultipartFile photo,
@@ -270,7 +262,7 @@ public class HomeController {
 					+ " because the file was empty.";
 		}
 	}
-
+*/
 	
 	/**
 	 * Edit a single user
@@ -437,7 +429,9 @@ public class HomeController {
 	
 		model.addAttribute("prefix", "../");
 
-		if (!isAdmin(session)) {
+		if (!isAdmin(session))
+		{
+			
 			return "hazLogin";
 		} 
 		else{
@@ -499,6 +493,7 @@ public class HomeController {
 			@RequestParam("tipo") String tipo,
 			@RequestParam("name") String descripcion,
 			@RequestParam("precio") int precio,
+			@RequestParam("photo") MultipartFile photo,
 			@RequestParam("csrf") String token,
 			HttpSession session, HttpServletRequest request, Model model) {
 	
@@ -506,14 +501,35 @@ public class HomeController {
 			return "hazLogin";
 		} 
 		else{
-
+			
 			Producto prod = new Producto();
+			
+			
 			prod.setTipo(tipo);
 			prod.setDescripcion(descripcion);
 			prod.setPrecio(precio);
 			
 			entityManager.persist(prod);
 			
+			long id = prod.getId();
+			
+			if (!photo.isEmpty()) {
+				try {
+					byte[] bytes = photo.getBytes();
+					BufferedOutputStream stream = new BufferedOutputStream(
+							new FileOutputStream(ContextInitializer.getFile("product",
+									"" + id)));
+					stream.write(bytes);
+					stream.close();
+					
+				} catch (Exception e) { 
+					return "You failed to upload " +  id + " => " + e.getMessage();
+				}
+			} else {
+				return "You failed to upload a photo for " + id
+						+ " because the file was empty.";
+			}
+
 			return "addProd";
 		}
 	}
@@ -984,6 +1000,29 @@ public class HomeController {
 			return "pedidos";
 		}
 	}
+	
+	// XSS version begin
+		/**
+		 * Delete a pedido; return JSON indicating success or failure
+		 */
+		@RequestMapping(value = "/admin/delPedido", method = RequestMethod.POST)
+		@ResponseBody
+		@Transactional
+		// needed to allow DB change
+		public ResponseEntity<String> delPedido(@RequestParam("id") long id,
+				@RequestParam("csrf") String token, HttpSession session) {
+			if (!isAdmin(session) || !isTokenValid(session, token)) {
+				return new ResponseEntity<String>(
+						"Error: no such user or bad auth", HttpStatus.FORBIDDEN);
+			} else if (entityManager.createNamedQuery("delPedido")
+					.setParameter("idParam", id).executeUpdate() == 1) {
+				return new ResponseEntity<String>("Ok: pedido " + id + " removed",
+						HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("Error: no such user",
+						HttpStatus.BAD_REQUEST);
+			}
+		}
 /**********************Lenin***************************/
 
 }

@@ -84,7 +84,7 @@
 							<div class="form">
 								<br><h2>Error en la sesión!</h2>
 								<br><h3>No se ha encontrado una sesión, por favor
-								<a href="iniciosesion">entra</a> ó <a href="register">registrate</a> para poder continuar.</h3>
+								<a href="${prefix}iniciosesion">entra</a> ó <a href="${prefix}register">registrate</a> para poder continuar.</h3>
 							</div>	
 						
 						<!-- End Content -->

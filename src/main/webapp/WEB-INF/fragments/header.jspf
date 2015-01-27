@@ -66,12 +66,12 @@ Standard header for all jsp pages in the site. Requires the following model vari
 				<div id="navigation">
 					<ul>
 						<li><a href="/myweb" title="Página de Inicio"><span>Inicio</span></a></li>
-						<li><a href="support" title="Página de Soporte"><span>Soporte</span></a></li>
-						<li><a href="account" title="Página de Mi Cuenta"><span>Mi
+						<li><a href="${prefix}support" title="Página de Soporte"><span>Soporte</span></a></li>
+						<li><a href="${prefix}account" title="Página de Mi Cuenta"><span>Mi
 									cuenta</span></a></li>
-						<li><a href="tienda" title="Página de la Tienda"><span>Tienda</span></a></li>
-						<li><a href="contact" title="Página de Contacto"><span>Contacto</span></a></li>
-						<li><a href="register" title="Página de Registro"><span>Registro</span></a></li>
+						<li><a href="${prefix}tienda" title="Página de la Tienda"><span>Tienda</span></a></li>
+						<li><a href="${prefix}contact" title="Página de Contacto"><span>Contacto</span></a></li>
+						<li><a href="${prefix}register" title="Página de Registro"><span>Registro</span></a></li>
 						<!--<li><a href="#" title="Iniciar Sesión"><span>Iniciar Sesión</span></a></li> -->
 						<li>
 							<!-- panel with buttons -->

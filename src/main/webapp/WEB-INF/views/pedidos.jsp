@@ -22,12 +22,12 @@
 		$("input").attr("disabled", "disabled");
 	});
 	
-	/*function delPedido(id) {
+	function delPedido(id) {
 		$.post("delPedido", {id : id,	csrf : "${e:forJavaScript(csrf_token)}"},
 				function(data) {
 			$("#del_" + id).parent().parent().remove();
 		}); 
-	}*/
+	}
 	function sendPedido(id) {
 		var tr = $("#r_"+id);
 		$.post("editPedido", 

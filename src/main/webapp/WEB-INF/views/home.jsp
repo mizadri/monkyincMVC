@@ -4,10 +4,6 @@
 	<div id="wrapper">
 		<!-- Begin Inner -->
 		<div class="inner">
-			<!-- Begin Header -->
-			<%-- 			<%@ include file="../fragments/header.jspf"%> --%>
-			<!-- End Header -->
-			<!-- Begin Shell -->
 			<div class="shell">
 				<!-- Begin Main -->
 				<div id="main">

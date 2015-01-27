@@ -7,7 +7,6 @@
 		<header>
 			<h2>Añade un producto</h2>
 		</header>
-	
 					<form action="${prefix}addProduct" id="addproduct" class="contacto" method="post" enctype="multipart/form-data">
 			
 						<div>

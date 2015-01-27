@@ -1,4 +1,51 @@
 <%@ include file="../fragments/header.jspf"%>
+<script type="text/javascript">
+	$(function() {
+		$(".tabs").tabs();
+	});
+	
+	$(function() {
+		$(".s").click(function() {
+			var id = $(this).attr("id").substring("send_".length);
+			console.log("sendin", id);
+			sendPedido(id);
+		});	
+		$(".edt").click(function() {
+			var id = $(this).attr("id").substring("edt_".length);
+			$("input").attr("disabled", "disabled");
+			$(this).parent().parent().find("input").removeAttr("disabled");
+		});
+		
+		$(".editpedido").attr("disabled", "disabled");
+	});
+	
+	function sendPedido(id){
+		var tr = $("#r_"+id);
+		$.post("editPedido", 
+		{
+			id : id,
+			cantidad : tr.children().children()[0].value,
+			prod_id : $("#productoid"+id).val()
+		},
+		
+		function(data) {
+			location.reload(true);//Forces reload from server
+		});
+	}
+	
+</script>
+<style>
+	table{
+		
+	}
+	th, td{
+		border: 2px solid black;
+		text-align: center;
+		padding: 10px;
+	}
+</style>
+
+</head>
 <body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">

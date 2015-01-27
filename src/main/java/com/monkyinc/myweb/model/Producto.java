@@ -14,8 +14,10 @@ import javax.persistence.OneToMany;
 @NamedQueries({
     @NamedQuery(name="productoById",
         query="select p from Pedido p where p.id = :idParam"),
-        @NamedQuery(name="delProduct",
-    	query="delete from Producto p where p.id= :idParam")
+    @NamedQuery(name="delProduct",
+		query="delete from Producto p where p.id= :idParam"),
+	@NamedQuery(name="producto",
+		query="select p from Producto p")
 })
 public class Producto {
 	
@@ -51,15 +53,6 @@ public class Producto {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	/*
-	@ManyToOne(targetEntity=Producto.class)
-	public TipoProducto getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoProducto tipo) {
-		this.tipo = tipo;
-	}
-	*/
 	@OneToMany(targetEntity=Pedido.class)
 	@JoinColumn(name="id")
 	public List<Pedido> getPedido() {

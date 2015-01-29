@@ -61,7 +61,10 @@
 										<div class="cl">&nbsp;</div>
 								</form>
 								<ul class="options">
-									<li><a href="#" title="Contact Customer Support">Contactar con atencion al cliente</a></li>
+									<li><a href="#" title="Advanced search">Búsqueda
+												avanzada</a></li>
+										<li><a href="#" title="Contact Customer Support">Contactar
+												con atención al cliente</a></li>
 								</ul>
 							</div>
 						</li>

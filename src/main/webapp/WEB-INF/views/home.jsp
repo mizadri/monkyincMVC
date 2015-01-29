@@ -1,8 +1,13 @@
-﻿<%@ include file="../fragments/header.jspf"%>
+﻿﻿<%@ include file="../fragments/header.jspf"%>
+<body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
 		<!-- Begin Inner -->
 		<div class="inner">
+			<!-- Begin Header -->
+			<%-- 			<%@ include file="../fragments/header.jspf"%> --%>
+			<!-- End Header -->
+			<!-- Begin Shell -->
 			<div class="shell">
 				<!-- Begin Main -->
 				<div id="main">
@@ -24,12 +29,47 @@
 								<h2>Buscar</h2>
 								<div id="search">
 									<form action="#" method="get" accept-charset="utf-8">
-										<label>Palabras clave</label> <input class="blink" name="keyword" type="text"> <label>Categoria</label>
-											<select size="1" name="category">
-												<option value="default">-- Seleccione --</option>
-												<option value="category1">Playeras</option>
-												<option value="category2">Chamarras</option>
-												<option value="category3">Gorras</option>
+										<label>Palabras clave</label> <input type="text" class="blink"
+											name="keyword" /> <label>Categoría</label> <select size="1"
+											name="category">
+											<option value="default">-- Seleccione Categoría --</option>
+											<option value="category1">Categoría 1</option>
+											<option value="category2">Categoría 2</option>
+											<option value="category3">Categoría 3</option>
+											<option value="category4">Categoría 4</option>
+											<option value="category5">Categoría 5</option>
+											<option value="category6">Categoría 6</option>
+											<option value="category7">Categoría 7</option>
+											<option value="category8">Categoría 8</option>
+											<option value="category9">Categoría 9</option>
+											<option value="category10">Categoría 10</option>
+											<option value="category11">Categoría 11</option>
+											<option value="category12">Categoría 12</option>
+											<option value="category13">Categoría 13</option>
+										</select>
+										<div class="price">
+											<label>Precio</label> <select size="1" name="price">
+												<option value="10">€10</option>
+												<option value="20">€20</option>
+												<option value="30">€30</option>
+												<option value="40">€40</option>
+												<option value="50">€50</option>
+												<option value="60">€60</option>
+												<option value="70">€70</option>
+												<option value="80">€80</option>
+												<option value="90">€90</option>
+												<option value="100">€100</option>
+											</select> <label>to:</label> <select size="1" name="to">
+												<option value="50">€50</option>
+												<option value="60">€60</option>
+												<option value="70">€70</option>
+												<option value="80">€80</option>
+												<option value="90">€90</option>
+												<option value="100">€100</option>
+												<option value="200">€200</option>
+												<option value="300">€300</option>
+												<option value="400">€400</option>
+												<option value="500">€500</option>
 											</select>
 											<div class="cl">&nbsp;</div>
 										</div>
@@ -38,7 +78,10 @@
 										<div class="cl">&nbsp;</div>
 									</form>
 									<ul class="options">
-										<li><a href="#" title="Contact Customer Support">Contactar con atenciOn al cliente</a></li>
+										<li><a href="#" title="Advanced search">Búsqueda
+												avanzada</a></li>
+										<li><a href="#" title="Contact Customer Support">Contactar
+												con atención al cliente</a></li>
 									</ul>
 								</div>
 							</li>
@@ -73,12 +116,12 @@
 						<!-- Begin Post -->
 						<div class="post">
 							<h2>¡Bienvenidos a Last4One!</h2>
-							<p>Last4One te ofrece las mejores playeras al mejor precio!
-							En nuestra tienda online encontrarás una gran variedad de 
-							diseños, diseños nuevos cada 2 semanas.
-							Todos nuestros modelos son creados por gente de nuestro equipo, 
-							así que no lo dudes más y deja de buscar en cualquier otro sitio,
-							aquí hallarás calidad y buen precio por diseños únicos e irrepetibles!</p>
+							<p>Last4One te ofrece las mejores playeras ¡al mejor precio!
+								En nuestra tienda online encontrarás una gran variedad de
+								diseños, diseños nuevos cada 2 semanas. Todos nuestros modelos
+								son creados por gente de nuestro equipo, así que no lo dudes más
+								y deja de buscar en cualquier otro sitio, aquí hallarás calidad
+								y buen precio con ¡diseños únicos e irrepetibles!</p>
 						</div>
 						<!-- End Post -->
 						<!-- Begin Products -->
@@ -162,9 +205,9 @@
 								<div class="cl">&nbsp;</div>
 							</div>
 							<div class="box-entry">
-								<p>Revisa nuestras condiciones.</p>
+								<p>Revisa nuestros términos y condiciones.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer más</a>
+									<a href="/support" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -180,7 +223,7 @@
 							<div class="box-entry">
 								<p>Contacta con nosotros si aún tienes dudas.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer más</a>
+									<a href="/support" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -196,7 +239,7 @@
 							<div class="box-entry">
 								<p>Cada mes nombramos un modelo favorito! El más vendido.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer más</a>
+									<a href="/support" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
@@ -210,14 +253,16 @@
 								<div class="cl">&nbsp;</div>
 							</div>
 							<div class="box-entry">
-								<p>Compra de la manera más fácil y rápida con nuestro modelo eficiente de compra.</p>
+								<p>Compra de la manera más fácil y rápida con nuestro modelo
+									eficiente de compra.</p>
 								<p class="more">
-									<a href="#" title="Read More">Leer más</a>
+									<a href="/support" title="Read More">Leer más</a>
 								</p>
 							</div>
 						</div>
 						<!-- End Box -->
 						<div class="cl">&nbsp;</div>
+					</div>
 					<!-- End Home Boxes -->
 				</div>
 				<!-- End Main -->

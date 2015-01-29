@@ -7,53 +7,56 @@ Standard header for all jsp pages in the site. Requires the following model vari
 --%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project"	prefix="e"%>
+<%@ taglib
+	uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project"
+	prefix="e"%>
 <%@ page pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
 <head>
 <title>${pageTitle}</title>
 
-<link rel="stylesheet" href="${prefix}resources/css/layout.css" type="text/css"
-	media="screen" />
+<link rel="stylesheet" href="${prefix}resources/css/layout.css"
+	type="text/css" media="screen" />
 <!--[if lt IE 9]>
 	<link rel="stylesheet" href="resources/css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-<script src="${prefix}resources/js/jquery-1.5.2.min.js" type="text/javascript"></script>
+<script src="${prefix}resources/js/jquery-1.5.2.min.js"
+	type="text/javascript"></script>
 <script src="${prefix}resources/js/hideshow.js" type="text/javascript"></script>
 <script src="${prefix}resources/js/jquery.tablesorter.min.js"
 	type="text/javascript"></script>
-<script type="text/javascript" src="${prefix}resources/js/jquery.equalHeight.js"></script>
+<script type="text/javascript"
+	src="${prefix}resources/js/jquery.equalHeight.js"></script>
 <script type="text/javascript">
-$(function() {
-	$(".tablesorter").tablesorter();
-});
-$(document).ready(function() {
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	$(document).ready(function() {
 
-	//When page loads...
-	$(".tab_content").hide(); //Hide all content
-	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-	$(".tab_content:first").show(); //Show first tab content
+		//When page loads...
+		$(".tab_content").hide(); //Hide all content
+		$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+		$(".tab_content:first").show(); //Show first tab content
 
-	//On Click Event
-	$("ul.tabs li").click(function() {
+		//On Click Event
+		$("ul.tabs li").click(function() {
 
-		$("ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$(".tab_content").hide(); //Hide all tab content
+			$("ul.tabs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$(".tab_content").hide(); //Hide all tab content
 
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+		});
+
 	});
 
-});
-
-$(function() {
-	$('.column').equalHeight();
-});
-	
+	$(function() {
+		$('.column').equalHeight();
+	});
 </script>
 
 </head>
@@ -76,9 +79,7 @@ $(function() {
 
 	<section id="secondary_bar">
 		<div class="user">
-			<p>
-				Administrador()
-			</p>
+			<p>Administrador()</p>
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
@@ -92,40 +93,30 @@ $(function() {
 	<!-- end of secondary bar -->
 
 	<aside id="sidebar" class="column">
-		<!-- <form class="quick_search">
-			<input type="text" value="Búsqueda rápida"
-				onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-		</form> -->
 		<hr />
 		<h3>Productos</h3>
 		<ul class="toggle">
-			<li class="icn_new_article"><a href="addProduct">Nuevo producto</a></li>
-			<li class="icn_edit_article"><a href="editProducts">Editar/borrar
+			<li class="icn_new_article"><a href="/myweb/admin/addProduct">Nuevo
+					producto</a></li>
+			<li class="icn_edit_article"><a href="/myweb/admin/editProducts">Editar/borrar
 					productos</a></li>
-			<!--  <li class="icn_categories"><a href="#">Categorias</a></li> -->
-			<!--  <li class="icn_tags"><a href="#">Etiquetas</a></li> -->
 		</ul>
 		<h3>Usuarios</h3>
 		<ul class="toggle">
 			<li class="icn_add_user"><a href="#">Añadir usuario</a></li>
-			<li class="icn_profile"><a href="/myweb/admin/editUsers">Editar/borrar usuarios</a></li>
-<!-- 			<li class="icn_view_users"><a href="#">Ver usuario</a></li> -->
+			<li class="icn_profile"><a href="/myweb/admin/editUsers">Editar/borrar
+					usuarios</a></li>
 		</ul>
 		<h3>Pedidos</h3>
 		<ul class="toggle">
 			<li class="icn_new_article"><a href="#">Añadir pedido</a></li>
-			<li class="icn_settings"><a href="editPedidos">Editar/borrar pedidos</a></li>
-<!-- 			<li class="icn_settings"><a href="#">Opciones</a></li> -->
-<!-- 			<li class="icn_security"><a href="#">Seguridad</a></li> -->
-<!-- 			<li class="icn_jump_back"><a href="#">Salir</a></li> -->
+			<li class="icn_settings"><a href="/myweb/admin/editPedidos">Editar/borrar
+					pedidos</a></li>
+
 		</ul>
 		<h3>Opciones</h3>
 		<ul class="toggle">
-<!-- 			<li class="icn_new_article"><a href="#">Añadir pedido</a></li> -->
-<!-- 			<li class="icn_settings"><a href="#">Editar/borrar pedidoss</a></li> -->
-<!-- 			<li class="icn_settings"><a href="#">Opciones</a></li> -->
-<!-- 			<li class="icn_security"><a href="#">Seguridad</a></li> -->
- 			<li class="icn_jump_back"><a href="/myweb">Salir</a></li>
+			<li class="icn_jump_back"><a href="/myweb">Salir</a></li>
 		</ul>
 
 		<footer>
@@ -138,146 +129,3 @@ $(function() {
 			</p>
 		</footer>
 	</aside>
-	<!-- end of sidebar -->
-
-<%-- <!DOCTYPE html>
-<html>
-<head>
-<title>${pageTitle}</title>
-<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
-<link rel="stylesheet"
-	href="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.css">
-<script
-	src="${prefix}resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
-<script src="${prefix}resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="${prefix}resources/css/main.css">
-pageExtraScripts
-<script src="resources/js/jquery-1.6.2.min.js" type="text/javascript"
-	charset="utf-8"></script>
-<!--[if IE 6]>
-		<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript" charset="utf-8"></script>
-	<![endif]-->
-<script src="resources/js/jquery.jcarousel.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="resources/js/functions.js" type="text/javascript"
-	charset="utf-8"></script>
-<script src="resources/js/jquery.validate.js" type="text/javascript"
-	charset="utf-8"></script>
-<link href="resources/js/jquery-ui-1.11.2/jquery-ui.min.css"
-	rel="stylesheet" />
-<script src="resources/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
-<script src="resources/js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-pageExtraCSS
-<link rel="stylesheet" href="resources/css/style.css" type="text/css"
-	media="all" />
-</head>
-<body>
-	<div id="header">
-
-		<div class="header-inner">
-			<!-- Begin Shell -->
-			<div class="shell">
-				<h1 id="logo">
-					<a class="notext" href="/myweb">Last4One</a>
-				</h1>
-				<div id="cajaLogin">
-	<c:choose>
-	<c:when test="${not empty user}">
-		Registrado como 
-		<a href="${prefix}user?u=${user.id}">${user.login}</a> [ ${user.role} ] 
-		( <a href="${prefix}logout">Salir</a> )
-	</c:when>
-	<c:otherwise>
-	<form action="${prefix}login" id="formularioLogin" method="POST">
-		<fieldset>
-			<label for="login">Login</label>
-			<input type="hidden" id="source" name="source" 
-				value="${requestScope['javax.servlet.forward.servlet_path']}"/>
-			<input type="text" id="login" name="login" placeholder="Login"/>
-			<input type="password" id="pass" name="pass" placeholder="Contraseña"/>
-			<button name="submit" value="login" type="submit">Entrar</button>
-			<a href="${prefix}register">No tengo</a>
-			<c:if test="${not empty loginError}">
-				<br><span class='errorLogin'>Login o contraseÃ±a incorrectos</span>
-			</c:if>
-		</fieldset>
-	</form>
-	</c:otherwise>
-	</c:choose>
-	</div>
-				<!-- Begin Navigation -->
-				<div id="navigation">
-					<ul>
-						<li><a href="/myweb" title="Página de Inicio"><span>Inicio</span></a></li>
-						<li><a href="support" title="Página de Soporte"><span>Soporte</span></a></li>
-						<li><a href="account" title="Página de Mi Cuenta"><span>Mi
-									cuenta</span></a></li>
-						<li><a href="tienda" title="Página de la Tienda"><span>Tienda</span></a></li>
-						<li><a href="contact" title="Página de Contacto"><span>Contacto</span></a></li>
-						<!-- 					<li><a href="#" title="Iniciar Sesión"><span>Iniciar Sesión</span></a></li> -->
-						<li>
-							<!-- panel with buttons -->
-
-							<div class="panel">
-								<c:choose>
-								<c:when test="${empty user}">		
-								<a href="#login_form" title="Iniciar Sesión"><span>Iniciar
-										Sesión</span></a>
-										</c:when>
-								<c:when test="${not empty user}">
-										<a href="${prefix}user?u=${user.id}"><span>${user.nombre}</span></a>
-										<a href="${prefix}logout"><span>Salir</span></a>
-										</c:when>
-								</c:choose>
-							</div> <!-- popup form #1 --> <a href="#x" class="overlay"
-							id="login_form"></a>
-							<div class="popup">
-								<div id="cajaLogin">
-									<c:choose>
-										<c:when test="${not empty user}">
-										Registrado como 
-										<a href="${prefix}user?u=${user.id}">${user.nombre}</a> [ ${user.nombre} ] 
-										( <a href="${prefix}logout">Salir</a> )
-									</c:when>
-										<c:otherwise>
-											<form action="${prefix}login" id="formularioLogin"
-												method="POST">
-												<fieldset>
-													<label for="login">Usuario</label> <input type="hidden"
-														id="source" name="source"
-														value="${requestScope['javax.servlet.forward.servlet_path']}" />
-													<input type="text" id="login" name="login"
-														placeholder="Usuario" />
-													<p></p>
-													<label for="contraseña">Contraseña</label> <input
-														type="password" id="pass" name="pass"
-														placeholder="Contraseña" />
-													<button name="submit" value="login" type="submit">Entrar</button>
-													<p></p>
-													<a href="${prefix}register"> <font color=”#0000A0">No
-															estoy registrado</font></a>
-													<c:if test="${not empty loginError}">
-														<br>
-														<span class='errorLogin'>Login o contraseña
-															incorrectos</span>
-													</c:if>
-												</fieldset>
-											</form>
-										</c:otherwise>
-									</c:choose>
-								</div>
-
-								<a class="close" href="#close"></a>
-							</div>
-						</li>
-
-					</ul>
-					<div class="cl">&nbsp;</div>
-				</div>
-
-				<!-- End Navigation -->
-				<div class="cl">&nbsp;</div>
-			</div>
-			<!-- End Shell -->
-		</div>
-	</div> --%>

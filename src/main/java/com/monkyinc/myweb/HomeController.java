@@ -353,6 +353,7 @@ public class HomeController {
 	public String editUsers(Model model, HttpSession session) {
 
 		model.addAttribute("prefix", "../");
+		model.addAttribute("pageTitle", "Administración - Editar/Borrar Usuarios");
 
 		if (!isAdmin(session)) {
 			return "hazLogin";
@@ -428,6 +429,7 @@ public class HomeController {
 	public String editProducts(Model model, HttpSession session) {
 	
 		model.addAttribute("prefix", "../");
+		model.addAttribute("pageTitle", "Administración - Editar/Borrar Productos");
 
 		if (!isAdmin(session))
 		{
@@ -482,6 +484,7 @@ public class HomeController {
 			String formattedDate = dateFormat.format(date);
 			
 			model.addAttribute("serverTime", formattedDate);
+			model.addAttribute("pageTitle", "Administración - Añadir Producto");
 			
 			return "addProd";
 		}
@@ -742,6 +745,8 @@ public class HomeController {
 		
 		model.addAttribute("prods", entityManager.createNamedQuery("producto")
 				.getResultList());
+		
+		model.addAttribute("pageTitle", "Tienda");
 
 		return "tienda";
 	}
@@ -824,7 +829,8 @@ public class HomeController {
 		model.addAttribute("pedido", entityManager.createNamedQuery("pedidoUser").setParameter("uParam", user_id).getResultList());
 		model.addAttribute("usuario", user);
 		model.addAttribute("serverTime", formattedDate);
-
+		model.addAttribute("pageTitle", "Mi cuenta");
+		
 		return "account";
 	}
 
@@ -988,6 +994,7 @@ public class HomeController {
 	public String editPedidos(Model model, HttpSession session) {
 	
 		model.addAttribute("prefix", "../");
+		model.addAttribute("pageTitle", "Administración - Editar/Borrar Pedidos");
 		
 		if (!isAdmin(session)) {
 			return "hazLogin";

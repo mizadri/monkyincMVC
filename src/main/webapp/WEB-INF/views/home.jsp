@@ -1,5 +1,4 @@
 ﻿<%@ include file="../fragments/header.jspf"%>
-<body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
 		<!-- Begin Inner -->
@@ -219,7 +218,6 @@
 						</div>
 						<!-- End Box -->
 						<div class="cl">&nbsp;</div>
-					</div>
 					<!-- End Home Boxes -->
 				</div>
 				<!-- End Main -->

@@ -490,7 +490,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model,HttpSession session) {
-		model.addAttribute("prefix", "../");
+		model.addAttribute("prefix", "./");
 		
 		if (!isAdmin(session)) {
 			return "hazLogin";
@@ -717,6 +717,7 @@ public class HomeController {
 				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("pageTitle", "Iniciar Sesión");
 		
 		return "login";
 	}

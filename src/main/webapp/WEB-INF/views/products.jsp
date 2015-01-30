@@ -40,7 +40,7 @@
 		},
 				function(data) {
 // 			$("#edt_" + id).parent().parent().update();
-		location.reload(true);//Foreces reload from server
+		location.reload(true);//Forces reload from server
 		});
 	}
 </script>

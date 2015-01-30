@@ -64,16 +64,16 @@
 							</ul>
 							<div id="tabs-1">
 								<br><h2>Usuario</h2><br>
-								<h3>Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h3><br>
+								<h3>!Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h3><br>
 								<form action="${prefix}editProfile" method="post">
 									<br>
 									<div class="form">
-									<label>Nombre de usuario: </label><input text="submit" name="login" value="${usuario.login}"/><br>
-									<br><label>Nombre: </label><input text="submit" name="nombre" value="${usuario.nombre}"/><br>
-									<br><label>Apellido: </label><input text="submit" name="apellido" value="${usuario.apellido}"/><br>
-									<br><label>Correo: </label><input text="submit" name="correo" value="${usuario.correo}" /><br>
-									<br><label>Telefono: </label><input text="submit" name="telefono" value="${usuario.telefono}" /><br>
-									<br><label>Dirección: </label><input text="submit" name="direccion" value="${usuario.direccion}" /><br>
+									<label>Nombre de usuario: </label><input text="submit" name="login" value="${e:forHtmlContent(usuario.login)}"/><br>
+									<br><label>Nombre: </label><input text="submit" name="nombre" value="${e:forHtmlContent(usuario.nombre)}"/><br>
+									<br><label>Apellido: </label><input text="submit" name="apellido" value="${e:forHtmlContent(usuario.apellido)}"/><br>
+									<br><label>Correo: </label><input text="submit" name="correo" value="${e:forHtmlContent(usuario.correo)}" /><br>
+									<br><label>Telefono: </label><input text="submit" name="telefono" value="${e:forHtmlContent(usuario.telefono)}" /><br>
+									<br><label>Dirección: </label><input text="submit" name="direccion" value="${e:forHtmlContent(usuario.direccion)}" /><br>
 									<input type="hidden" name="csrf" value="${csrf}" />
 									<input type="hidden" name="id" value="${usuario.id}" />
 									<input type="hidden" name="role" value="${usuario.role}" />
@@ -104,11 +104,11 @@
 												<tr id="r_${p.id}">
 													<td>${p.id}</td>
 													<td>${p.usuario.nombre}</td>
-													<td><input class="editpedido" text="submit" name="cantidad" value="${p.cantidad}"></input></td>
+													<td><input class="editpedido" type="number" text="submit" width="40px" name="cantidad" value="${p.cantidad}"></input></td>
 													<td>${p.precio}</td>
 													<td>${p.producto.descripcion}</td>
 													<td>
-														<button class="s" id="send_${p.id}">Confirmar</button>
+														<button class="s" id="send_${p.id}">&#10004</button>
 														<button class="edt" id="edt_${p.id}">
 														<image src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button>
 													</td>

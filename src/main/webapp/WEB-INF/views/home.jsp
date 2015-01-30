@@ -4,10 +4,6 @@
 	<div id="wrapper">
 		<!-- Begin Inner -->
 		<div class="inner">
-			<!-- Begin Header -->
-			<%-- 			<%@ include file="../fragments/header.jspf"%> --%>
-			<!-- End Header -->
-			<!-- Begin Shell -->
 			<div class="shell">
 				<!-- Begin Main -->
 				<div id="main">
@@ -78,11 +74,8 @@
 										<div class="cl">&nbsp;</div>
 									</form>
 									<ul class="options">
-										<li><a href="#" title="Advanced search">Búsqueda
-												avanzada</a></li>
-										<li><a href="#" title="Contact Customer Support">Contactar
-												con atención al cliente</a></li>
-									</ul>
+										<li><a href="contact" title="Contact Customer Support">!Contacta con nosotros¡</a></li>
+									</ul>	
 								</div>
 							</li>
 							<!-- End Widget -->
@@ -116,10 +109,10 @@
 						<!-- Begin Post -->
 						<div class="post">
 							<h2>¡Bienvenidos a Last4One!</h2>
-							<p>Last4One te ofrece las mejores playeras ¡al mejor precio!
+							<p>Last4One te ofrece las mejores camisetas, ¡al mejor precio!
 								En nuestra tienda online encontrarás una gran variedad de
-								diseños, diseños nuevos cada 2 semanas. Todos nuestros modelos
-								son creados por gente de nuestro equipo, así que no lo dudes más
+								diseños nuevos cada semanas. Todos nuestros modelos
+								son creados por Gustavo y Julia de forma artesanal, así que no lo dudes más
 								y deja de buscar en cualquier otro sitio, aquí hallarás calidad
 								y buen precio con ¡diseños únicos e irrepetibles!</p>
 						</div>
@@ -205,7 +198,7 @@
 								<div class="cl">&nbsp;</div>
 							</div>
 							<div class="box-entry">
-								<p>Revisa nuestros términos y condiciones.</p>
+								<p>Revisa nuestras condiciones.</p>
 								<p class="more">
 									<a href="/support" title="Read More">Leer más</a>
 								</p>

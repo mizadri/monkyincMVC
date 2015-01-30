@@ -83,12 +83,12 @@
 								<tr id="r_${u.id}">
 									<td>${u.id}</td>
 									<td><input text="submit" name="role" value="${u.role}" size="7" /></td>
-									<td><input text="submit" name="login" value="${u.login}" size="10"/></td>
-									<td><input text="submit" name="nombre" value="${u.nombre}" size="8"/></td>
-									<td><input text="submit" name="apellido" value="${u.apellido}" size="8"/></td>
-									<td><input text="submit" name="correo" value="${u.correo}" /></td>
-									<td><input text="submit" name="telefono" value="${u.telefono}" size="10" /></td>
-									<td><input text="submit" name="direccion" value="${u.direccion}" /></td>
+									<td><input text="submit" name="login" value="${e:forHtmlContent(u.login)}" size="10"/></td>
+									<td><input text="submit" name="nombre" value="${e:forHtmlContent(u.nombre)}" size="8"/></td>
+									<td><input text="submit" name="apellido" value="${e:forHtmlContent(u.apellido)}" size="8"/></td>
+									<td><input text="submit" name="correo" value="${e:forHtmlContent(u.correo)}" /></td>
+									<td><input text="submit" name="telefono" value="${e:forHtmlContent(u.telefono)}" size="10" /></td>
+									<td><input text="submit" name="direccion" value="${e:forHtmlContent(u.direccion)}" /></td>
 									<input hidden="submit" name="id" value="${u.id}" />
 									<input hidden="submit" name="csrf" value="${csrf}" />
 									<td><button class="s" id="send_${u.id}">&#10004</button>

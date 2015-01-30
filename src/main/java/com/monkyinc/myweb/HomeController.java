@@ -143,7 +143,7 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public @ResponseBody String handleFileUpload(
+	public String handleFileUpload(
 			@RequestParam("photo") MultipartFile photo,
 			@RequestParam("id") String id) {
 		if (!photo.isEmpty()) {
@@ -154,11 +154,7 @@ public class HomeController {
 								id)));
 				stream.write(bytes);
 				stream.close();
-				return "You successfully uploaded "
-						+ id
-						+ " into "
-						+ ContextInitializer.getFile("user", id)
-								.getAbsolutePath() + "!";
+				return "redirect:/account";
 			} catch (Exception e) {
 				return "You failed to upload " +  id + " => " + e.getMessage();
 			}

@@ -59,32 +59,41 @@
 						<!-- Begin Content -->
 						<div class="tabs">
 							<ul>
-								<li><a href="#tabs-1">Usuario</a></li>
-								<li><a href="#tabs-2">Pedidos</a></li>
+								<li><a href="#tabs-1">Editar datos</a></li>
+								<li><a href="#tabs-2">Subir foto</a></li>
+								<li><a href="#tabs-3">Pedidos</a></li>
 							</ul>
 							<div id="tabs-1">
-								<br><h2>Usuario</h2><br>
-								<h3>!Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h3><br>
+								<br><h2>!Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h2><br>
 								<form action="${prefix}editProfile" method="post">
 									<br>
 									<div class="form">
-									<label>Nombre de usuario: </label><input text="submit" name="login" value="${e:forHtmlContent(usuario.login)}"/><br>
-									<br><label>Nombre: </label><input text="submit" name="nombre" value="${e:forHtmlContent(usuario.nombre)}"/><br>
-									<br><label>Apellido: </label><input text="submit" name="apellido" value="${e:forHtmlContent(usuario.apellido)}"/><br>
-									<br><label>Correo: </label><input text="submit" name="correo" value="${e:forHtmlContent(usuario.correo)}" /><br>
-									<br><label>Telefono: </label><input text="submit" name="telefono" value="${e:forHtmlContent(usuario.telefono)}" /><br>
-									<br><label>Dirección: </label><input text="submit" name="direccion" value="${e:forHtmlContent(usuario.direccion)}" /><br>
-									<input type="hidden" name="csrf" value="${csrf}" />
-									<input type="hidden" name="id" value="${usuario.id}" />
-									<input type="hidden" name="role" value="${usuario.role}" />
-									<br><button type="submit" name="upload" value="ok">Actualizar</button>
+										<label>Nombre de usuario: </label><input text="submit" name="login" value="${e:forHtmlContent(usuario.login)}"/><br>
+										<br><label>Nombre: </label><input text="submit" name="nombre" value="${e:forHtmlContent(usuario.nombre)}"/><br>
+										<br><label>Apellido: </label><input text="submit" name="apellido" value="${e:forHtmlContent(usuario.apellido)}"/><br>
+										<br><label>Correo: </label><input text="submit" name="correo" value="${e:forHtmlContent(usuario.correo)}" /><br>
+										<br><label>Telefono: </label><input text="submit" name="telefono" value="${e:forHtmlContent(usuario.telefono)}" /><br>
+										<br><label>Dirección: </label><input text="submit" name="direccion" value="${e:forHtmlContent(usuario.direccion)}" /><br>
+										<input type="hidden" name="csrf" value="${csrf}" />
+										<input type="hidden" name="id" value="${usuario.id}" />
+										<input type="hidden" name="role" value="${usuario.role}" />
+										<br><button type="submit" name="upload" value="ok">Actualizar</button>
 									</div>
 								</form>
 								<br><br>
 							</div>
 							<div id="tabs-2">
-								<br><h2>Pedidos</h2><br>
-								<h3>Aquí podrás modificar la cantidad de artículos que deseas pedir.</h3><br><br>
+								<br><h2>!Hola ${usuario.nombre}! Aquí podrás subir una foto de perfil.</h2><br>
+								<form method="POST" enctype="multipart/form-data" action="user">
+									Imágen a subir <input type="file" name="photo"><br />
+									<input hidden="submit" name="id" value="${usuario.id}" />
+									<button type="submit" name="upload" value="ok">Subir</button>
+								</form>
+								<br><br><br><br><br><br><br><br><br><br>
+							</div>
+							<div id="tabs-3">
+								<br><h2>Aquí podrás modificar la cantidad de artículos que deseas pedir.</h2><br>
+								<h3></h3><br><br>
 								<c:choose>
 								<c:when test="${not empty pedido}">
 								
@@ -120,8 +129,8 @@
 								
 								</c:when>
 								<c:when test="${empty pedido}">
-									<p>No has realizado ningún pedido hasta el momento,
-									visita nuestra tienda!</p><br><br><br><br>
+									<p>Lo sentimos ${usuario.nombre} No has realizado ningún pedido hasta el momento,
+									visita nuestra <a href="${prefix}tienda" style="color:blue">tienda</a>!</p><br><br><br><br>
 									<br><br><br><br><br><br><br><br><br><br><br>
 								</c:when>
 								</c:choose>

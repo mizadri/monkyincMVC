@@ -64,7 +64,9 @@ public class HomeController {
 		String formSource = request.getParameter("source");
 		logger.info("Login attempt from '{}' while visiting '{}'", formLogin,
 				formSource);
-
+		
+		model.addAttribute("pageTitle", "MonkyInc:Bienvenido");
+		
 		// validate request
 		if (formLogin == null || formLogin.length() < 4 || formPass == null
 				|| formPass.length() < 4) {
@@ -676,7 +678,8 @@ public class HomeController {
 		model.addAttribute("pedido", entityManager.createNamedQuery("pedidoUser").setParameter("uParam", user_id).getResultList());
 		model.addAttribute("usuario", user);
 		model.addAttribute("serverTime", formattedDate);
-
+		model.addAttribute("pageTitle", "Mi cuenta");
+		
 		return "account";
 	}
 
@@ -770,6 +773,24 @@ public class HomeController {
 		return "badpassword";
 	}
 
+	@RequestMapping(value = "/admin/addUser", method = RequestMethod.GET)
+	public String addProductAdmin(Locale locale,Model model,HttpSession session) {
+		model.addAttribute("prefix", "../");
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+					DateFormat.LONG, locale);
+			String formattedDate = dateFormat.format(date);
+			
+			model.addAttribute("serverTime", formattedDate);
+			model.addAttribute("pageTitle", "Administración - Añadir Usuario");
+			
+			return "addUser";
+		}
+	}
 
 	/*******************Lenin*********************/
 	

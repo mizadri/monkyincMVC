@@ -64,7 +64,7 @@
 								<li><a href="#tabs-3">Pedidos</a></li>
 							</ul>
 							<div id="tabs-1">
-								<br><h2>!Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h2><br>
+								<br><h2>¡Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h2><br>
 								<form action="${prefix}editProfile" method="post">
 									<br>
 									<div class="form">

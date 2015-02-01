@@ -52,11 +52,14 @@ Standard header for all jsp pages in the site. Requires the following model vari
 										<a href="${prefix}iniciosesion" title="Iniciar Sesión"><span>Iniciar Sesión</span></a>
 									</c:when>
 									<c:when test="${not empty user}">
-										<a href="${prefix}account"><span>
+									<c:if test="${user.role == 'admin'}">
+									<a href="${prefix}admin"><span>Administración</span></a>
+									</c:if>
+										<li><a href="${prefix}account"><span>
 										<img src="${prefix}user/photo?id=${user.id}" style="width:18px; height:18px;"/>
-										${e:forHtmlContent(user.nombre)}</span>
-										</a>
-										<a href="${prefix}logout"><span>Salir</span></a>
+										${e:forHtmlContent(user.nombre)}</span></a></li>
+										
+										<li><a href="${prefix}logout"><span>Salir</span></a></li>
 									</c:when>
 								</c:choose>
 							</div> 

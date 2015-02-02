@@ -1,4 +1,5 @@
 <%@ include file="../fragments/header.jspf"%>
+${received}
 <body>
 	<!-- Begin Wrapper -->
 	<div id="wrapper">
@@ -11,7 +12,7 @@
 
 					<!-- Begin Content -->
 
-					<form class="contact_form" action="#" method="post" id="contacto">
+					<form class="contact_form" action="contact" method="post" id="contacto">
 						<ul>
 							<li>
 								<h2>Contáctanos</h2>
@@ -29,6 +30,7 @@
 								<button class="submit" type="submit">Enviar</button>
 							</li>
 						</ul>
+						<input type="hidden" name="csrf" value="${csrf_token}" />
 					</form>
 					<script>
 						$("#contacto").validate({

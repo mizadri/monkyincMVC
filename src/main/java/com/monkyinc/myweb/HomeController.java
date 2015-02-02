@@ -576,7 +576,28 @@ public class HomeController {
 		model.addAttribute("pageTitle", "Contacto");
 		return "contact";
 	}
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public String contactReceive(@RequestParam("csrf") String token,
+			HttpSession session,Locale locale, Model model) {
 
+		if (!isTokenValid(session, token)) {
+			return "hazLogin";
+		}else{
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+					DateFormat.LONG, locale);
+	
+			String formattedDate = dateFormat.format(date);
+	
+			model.addAttribute("serverTime", formattedDate);
+			model.addAttribute("pageTitle", "Contacto");
+			char c= '"';
+			model.addAttribute("received", "<script>alert("+c+"Hemos recibido su mensaje. Un administrador se pondrá en contacto con usted."+c+")</script>");
+			return "contact";
+
+		}
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Locale locale, Model model) {
 

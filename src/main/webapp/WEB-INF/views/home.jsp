@@ -15,8 +15,8 @@
 								<h2>Categorias</h2>
 								<ul>
 									<li><a href="${prefix}camisetas" title="Category 1">Camisetas</a></li>
-								<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
-								<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
+									<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
+									<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
 								</ul>
 							</li>
 							<!-- End Widget -->
@@ -66,12 +66,6 @@
 						<div class="post">
 							<br>
 							<h2>¡Bienvenidos a MonkyInc!</h2>
-							<p> 
-								Somos Gustavo y Julia, un par de jovenes artistas que nos dedicamos
-								a crear todo tipo de obras, entre ellas camisetas, gorras, bolsas, mochilas
-								y todo tipo de bien personalizable.	Actualmente vivimos en Asturias entre las montañas
-								pero hacemos envíos a todo el mundo, de hecho tratamos con gente de Nueva York y Alemania.
-							</p>
 							<br>
 							<p>
 								En <strong>MonkyInc</strong> encontrarás una gran variedad

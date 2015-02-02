@@ -66,6 +66,7 @@
 						<!-- Begin Content -->
 						<div class="form">
 						<h1>Detalles del producto</h1>
+						<br>
 						<form action="${prefix}addPedido" method="post">
 							<img src="${prefix}/product/photo?id=${producto.id}" style="width:234px; height:300px;" />
 							<br></br><label>Modelo: </label>   ${producto.descripcion}

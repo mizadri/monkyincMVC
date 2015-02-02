@@ -737,21 +737,25 @@ public class HomeController {
 
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	public String account(Locale locale, Model model, HttpSession session) {
+		Usuario u = (Usuario) session.getAttribute("user");
+		
+		if(u!=null){
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+					DateFormat.LONG, locale);
+			String formattedDate = dateFormat.format(date);
+			
+			long user_id = ((Usuario) session.getAttribute("user")).getId();
+			Usuario user = entityManager.find(Usuario.class, user_id);
 	
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		
-		long user_id = ((Usuario) session.getAttribute("user")).getId();
-		Usuario user = entityManager.find(Usuario.class, user_id);
-
-		model.addAttribute("pedido", entityManager.createNamedQuery("pedidoUser").setParameter("uParam", user_id).getResultList());
-		model.addAttribute("usuario", user);
-		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("pageTitle", "Mi cuenta");
-		
-		return "account";
+			model.addAttribute("pedido", entityManager.createNamedQuery("pedidoUser").setParameter("uParam", user_id).getResultList());
+			model.addAttribute("usuario", user);
+			model.addAttribute("serverTime", formattedDate);
+			model.addAttribute("pageTitle", "Mi cuenta");
+			
+			return "account";
+		}else
+			return "hazLogin";
 	}
 
 	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
@@ -890,7 +894,6 @@ public class HomeController {
 		
 		return "bolsas";
 	}
-	/*******************Lenin*********************/
 	
 	@RequestMapping(value = "/editPedido", method = RequestMethod.POST)
 	@Transactional
@@ -920,7 +923,7 @@ public class HomeController {
 		return "actualizado";
 	}
 	
-	/*******************Lenin*********************/
+
 	@RequestMapping(value = "/admin/editPedido", method = RequestMethod.POST)
 	@Transactional
 	public String editPedidoAdmin(@RequestParam("id") long id,
@@ -991,6 +994,5 @@ public class HomeController {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
-/**********************Lenin***************************/
 
 }

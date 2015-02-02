@@ -13,9 +13,9 @@
 						<li class="widget">
 							<h2>Categorias</h2>
 							<ul>
-								<li><a href="#" title="Category 1">Playeras</a></li>
-								<li><a href="#" title="Category 2">Chamarras</a></li>
-								<li class="last"><a href="#" title="Category 3">Gorras</a></li>
+								<li><a href="${prefix}camisetas" title="Category 1">Camisetas</a></li>
+								<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
+								<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
 							</ul>
 						</li>
 						<!-- End Widget -->

@@ -12,60 +12,47 @@
 						<li class="widget">
 							<h2>Categorias</h2>
 							<ul>
-								<li><a href="${prefix}camisetas" title="Category 1">Playeras</a></li>
+								<li><a href="${prefix}camisetas" title="Category 1">Camisetas</a></li>
 								<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
 								<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
 							</ul>
 						</li>
 						<!-- End Widget -->
-						<!-- Begin Widget -->
 						<li class="widget">
-							<h2>Buscar</h2>
-							<div id="search">
-								<form action="#" method="get" accept-charset="utf-8">
-									<label>Palabras clave</label> <input class="blink"
-										name="keyword" type="text"> <label>Categoria</label> <select
-										size="1" name="category">
-											<option value="default">-- Seleccione --</option>
-											<option value="category1">Playeras</option>
-											<option value="category2">Chamarras</option>
-											<option value="category3">Gorras</option>
-									</select>
-										<div class="price">
-											<label>Precio</label> <select size="1" name="price">
-												<option value="10">10</option>
-												<option value="20">20</option>
-												<option value="30">30</option>
-												<option value="40">40</option>
-												<option value="50">50</option>
-												<option value="60">60</option>
-												<option value="70">70</option>
-												<option value="80">80</option>
-												<option value="90">90</option>
-												<option value="100">100</option>
-											</select> <label>to:</label> <select size="1" name="to">
-												<option value="50">50</option>
-												<option value="60">60</option>
-												<option value="70">70</option>
-												<option value="80">80</option>
-												<option value="90">90</option>
-												<option value="100">100</option>
-												<option value="200">200</option>
-											</select>
-											<div class="cl">&nbsp;</div>
-										</div> <span class="button"><input value="Buscar"
-											type="submit"></span>
-										<div class="cl">&nbsp;</div>
-								</form>
+								<h2>Atención al cliente</h2>
+								<div id="search">
+								<br>
 								<ul class="options">
-									<li><a href="#" title="Advanced search">Búsqueda
-												avanzada</a></li>
-										<li><a href="#" title="Contact Customer Support">Contactar
-												con atención al cliente</a></li>
+									<li><a href="support" title="Contact Customer Support">Contactar
+											con atencion al cliente</a></li>
 								</ul>
-							</div>
-						</li>
-						<!-- End Widget -->
+								<br>
+								<!-- PayPal Logo -->
+								<table border="0" cellpadding="10" cellspacing="0"
+									align="center">
+									<tbody>
+										<tr>
+											<td align="center"></td>
+										</tr>
+										<tr>
+											<td align="center"><a
+												href="https://www.paypal.com/es/webapps/mpp/paypal-popup"
+												title="Cómo funciona PayPal"
+												onclick="javascript:window.open('https://www.paypal.com/es/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img
+													src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logotipo_paypal_pagos_seguros.png"
+													border="0" alt="Seguro con PayPal" /></a>
+											<div style="text-align: center">
+													<a href="https://www.paypal.com/es/webapps/mpp/why"
+														target="_blank"><font size="2" face="Arial"
+														color="#0079CD"><strong>Cómo funciona
+																PayPal</strong></font></a>
+												</div></td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- PayPal Logo -->
+								</div>
+							</li>
 					</ul>
 				</div>
 

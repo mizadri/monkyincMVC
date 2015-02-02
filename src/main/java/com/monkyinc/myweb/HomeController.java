@@ -219,6 +219,27 @@ public class HomeController {
 
 	//The uploading function is made inside /addProduct
 	
+	@RequestMapping(value = "/admin/addUser", method = RequestMethod.GET)
+	public String addProductAdmin(Locale locale,Model model,HttpSession session) {
+		
+		if (!isAdmin(session)) {
+			return "hazLogin";
+		} 
+		else{
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+					DateFormat.LONG, locale);
+			String formattedDate = dateFormat.format(date);
+			
+			model.addAttribute("serverTime", formattedDate);
+			model.addAttribute("prefix", "../");
+			model.addAttribute("pageTitle", "Administración - Añadir Usuario");
+			
+			return "addUser";
+		}
+	}
+	
+	
 	/** 
 	 *Edit a single user(used for admin page)
 	 */

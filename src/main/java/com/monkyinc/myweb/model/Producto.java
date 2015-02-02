@@ -17,7 +17,13 @@ import javax.persistence.OneToMany;
     @NamedQuery(name="delProduct",
 		query="delete from Producto p where p.id= :idParam"),
 	@NamedQuery(name="producto",
-		query="select p from Producto p")
+		query="select p from Producto p"),
+	@NamedQuery(name="productoCamiseta",
+		query="select p from Producto p where p.tipo='camiseta'"),
+	@NamedQuery(name="productoGorra",
+		query="select p from Producto p where p.tipo='gorra'"),
+	@NamedQuery(name="productoBolsa",
+		query="select p from Producto p where p.tipo='bolsa'")
 })
 public class Producto {
 	

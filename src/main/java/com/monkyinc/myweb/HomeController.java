@@ -637,7 +637,6 @@ public class HomeController {
 		return "pedido";
 	}
 
-
 	@RequestMapping(value = "/addPedido", method = RequestMethod.POST)
 	@Transactional
 	public String addPedido(@RequestParam("producto") long producto_id,
@@ -791,7 +790,48 @@ public class HomeController {
 			return "addUser";
 		}
 	}
+	
+	@RequestMapping(value = "/camisetas", method = RequestMethod.GET)
+	public String camisetas(Locale locale, Model model) {
 
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("prods", entityManager.createNamedQuery("productoCamiseta")
+				.getResultList());
+		
+		return "camisetas";
+	}
+	
+	@RequestMapping(value = "/gorras", method = RequestMethod.GET)
+	public String gorras(Locale locale, Model model) {
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("prods", entityManager.createNamedQuery("productoGorra")
+				.getResultList());
+		
+		return "gorras";
+	}
+	
+	@RequestMapping(value = "/bolsas", method = RequestMethod.GET)
+	public String bolsas(Locale locale, Model model) {
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("prods", entityManager.createNamedQuery("productoBolsa")
+				.getResultList());
+		
+		return "bolsas";
+	}
 	/*******************Lenin*********************/
 	
 	@RequestMapping(value = "/editPedido", method = RequestMethod.POST)

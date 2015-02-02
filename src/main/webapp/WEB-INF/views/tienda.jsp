@@ -12,9 +12,9 @@
 						<li class="widget">
 							<h2>Categorias</h2>
 							<ul>
-								<li><a href="#" title="Category 1">Playeras</a></li>
-								<li><a href="#" title="Category 2">Chamarras</a></li>
-								<li class="last"><a href="#" title="Category 3">Gorras</a></li>
+								<li><a href="${prefix}camisetas" title="Category 1">Playeras</a></li>
+								<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
+								<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
 							</ul>
 						</li>
 						<!-- End Widget -->
@@ -77,23 +77,15 @@
 							<div class="product">
 								<input type="hidden" name="prodid" value="${p.id}"></input> <a
 									href="${prefix}pedido/${p.id}"><img
-									src="resources/css/images/product-img${p.id+1}.jpg"
+									src="${prefix}product/photo?id=${p.id}"
+									style="width:234px; height:238px;"
 									alt="First TShirt Product"></a>
 								<div class="pr-info">
 									<h4>${p.descripcion}</h4>
-									<span class="pr-price"><span>$</span>${p.precio}</span>
+									<span class="pr-price"><span>&#8364; </span>${p.precio}</span>
 								</div>
 							</div>
 						</c:forEach>
-
-						<!--<div class="product">
-								<a href="${prefix}pedido"><img src="resources/css/images/product-img2.jpg" alt="First TShirt Product"></a>
-								<div class="pr-info">
-									<h4>Not in here</h4>
-									<p>Un mundo divertido que mostrarle a todos!</p>
-									<span class="pr-price"><span>$</span>18.<sup>99</sup></span>
-								</div>
-							</div>-->
 
 						<br />
 						<div class="cl">&nbsp;</div>

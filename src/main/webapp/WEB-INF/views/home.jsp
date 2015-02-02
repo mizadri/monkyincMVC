@@ -14,9 +14,9 @@
 							<li class="widget">
 								<h2>Categorias</h2>
 								<ul>
-									<li><a href="#" title="Category 1">Playeras</a></li>
-									<li><a href="#" title="Category 2">Chamarras</a></li>
-									<li class="last"><a href="#" title="Category 3">Gorras</a></li>
+									<li><a href="${prefix}camisetas" title="Category 1">Playeras</a></li>
+								<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
+								<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
 								</ul>
 							</li>
 							<!-- End Widget -->
@@ -114,30 +114,36 @@
 						<!-- Begin Products -->
 						<div id="products">
 							<div class="product">
-								<img src="resources/css/images/product-img1.jpg"
-									alt="First TShirt Product" />
+								<input type="hidden" name="prodid" value="0"></input> <a
+									href="${prefix}pedido/0"><img
+									src="${prefix}product/photo?id=0"
+									alt="First TShirt Product"></a>
 								<div class="pr-info">
 									<h4>Tools Trade</h4>
 									<p>Solo para rockeros</p>
-									<span class="pr-price"><span>€</span>30</span>
+									<span class="pr-price"><span>€ </span>30</span>
 								</div>
 							</div>
 							<div class="product">
-								<img src="resources/css/images/product-img2.jpg"
-									alt="Second TShirt Product" />
+								<input type="hidden" name="prodid" value="1"></input> <a
+									href="${prefix}pedido/1"><img
+									src="${prefix}product/photo?id=1"
+									alt="First TShirt Product"></a>
 								<div class="pr-info">
 									<h4>Hello world</h4>
 									<p>Sonriele al mundo!</p>
-									<span class="pr-price"><span>€</span>35</span>
+									<span class="pr-price"><span>€ </span>35</span>
 								</div>
 							</div>
 							<div class="product last">
-								<img src="resources/css/images/product-img3.jpg"
-									alt="Third TShirt Product" />
+								<input type="hidden" name="prodid" value="2"></input> <a
+									href="${prefix}pedido/2"><img
+									src="${prefix}product/photo?id=2"
+									alt="Third TShirt Product"></a>
 								<div class="pr-info">
 									<h4>Stussy</h4>
 									<p>Vuelvete un skate</p>
-									<span class="pr-price"><span>€</span>45</span>
+									<span class="pr-price"><span>€ </span>45</span>
 								</div>
 							</div>
 							<div class="cl">&nbsp;</div>

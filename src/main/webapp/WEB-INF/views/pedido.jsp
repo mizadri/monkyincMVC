@@ -10,9 +10,9 @@
 							<li class="widget">
 								<h2>Categorias</h2>
 								<ul>
-									<li><a href="#" title="Category 1">Playeras</a></li>
-									<li><a href="#" title="Category 2">Chamarras</a></li>
-									<li class="last"><a href="#" title="Category 3">Gorras</a></li>
+									<li><a href="${prefix}camisetas" title="Category 1">Playeras</a></li>
+								<li><a href="${prefix}gorras" title="Category 2">Gorras</a></li>
+								<li class="last"><a href="${prefix}bolsas" title="Category 3">Bolsas</a></li>
 								</ul>
 							</li>
 							<!-- End Widget -->
@@ -67,7 +67,7 @@
 						<div class="form">
 						<h1>Detalles del producto</h1>
 						<form action="${prefix}addPedido" method="post">
-							<img src="${prefix}resources/css/images/product-img${producto.id}.jpg" />
+							<img src="${prefix}/product/photo?id=${p.id}" style="width:234px; height:238px;" />
 							<br></br><label>Modelo: </label>   ${producto.descripcion}
 							<br><br><label>Precio: </label>  &#8364 ${producto.precio}
 							<br><br><label>Cantidad</label>

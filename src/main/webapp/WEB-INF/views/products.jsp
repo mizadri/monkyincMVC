@@ -51,7 +51,6 @@
 				<h3 class="tabs_involved">Lista de Productos</h3>
 				<ul class="tabs">
 					<li><a href="#tab1">Productos</a></li>
-					<!--<li><a href="#tab2">Comentarios</a></li> (replicar div de tab1)-->
 				</ul>
 			</header>
 
@@ -73,14 +72,14 @@
 							<c:forEach items="${products}" var="p">
 								<tr id="r_${p.id}">
 									<td>${p.id}</td>
-									<td><input text="submit" name="tipo" value="${p.tipo}" size="8" /></td>
-									<td><input text="submit" name="descripcion" value="${p.descripcion}" /></td>
-									<td><input text="submit" name="precio" value="${p.precio}" size="4" /></td>
-									<input hidden="submit" name="csrf" value="${csrf}" />
-									<td><button class="s" id="send_${p.id}">&#10004</button>
-									<button class="x" id="del_${p.id}"> <image
+									<td><input name="tipo" value="${p.tipo}" size="8" /></td>
+									<td><input name="descripcion" value="${p.descripcion}" /></td>
+									<td><input name="precio" value="${p.precio}" size="4" /></td>
+									<td><button class="s" id="send_${p.id}"><img width="16px" height="16px"
+									src="${prefix}resources/css/images/icn_alert_success.png" alt="Send"/></button>
+									<button class="x" id="del_${p.id}"> <img width="16px" height="16px"
 									src="${prefix}resources/css/images/icn_trash.png" alt="Trash"/></button>
-									<button class="edt" id="edt_${p.id}"> <image  
+									<button class="edt" id="edt_${p.id}"> <img width="16px" height="16px"
 									src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button></td>
 									<td><img src="${prefix}product/photo?id=${p.id}" style="width:80px; height:80px;"/></td>
 								</tr>

@@ -33,14 +33,12 @@
 		$.post("editPedido", 
 		{
 			id : id,
-			usuario : tr.children().children()[0].value,
-			descripcion : tr.children().children()[1].value,
 			cantidad : tr.children().children()[2].value,
 			precio : tr.children().children()[3].value,
+			csrf : "${e:forJavaScript(csrf_token)}"
 	
 		},
 				function(data) {
-// 			$("#edt_" + id).parent().parent().update();
 		location.reload(true);//Foreces reload from server
 		});
 	}
@@ -52,7 +50,6 @@
 				<h3 class="tabs_involved">Lista de Pedidos</h3>
 				<ul class="tabs">
 					<li><a href="#tab1">Pedidos</a></li>
-					<!--<li><a href="#tab2">Comentarios</a></li> (replicar div de tab1)-->
 				</ul>
 			</header>
 
@@ -60,14 +57,12 @@
 				<div id="tab1" class="tab_content">
 					<table class="tablesorter">
 						<thead>
-							<tr>
-								
+							<tr>								
 								<th>Id</th>
 								<th>Usuario</th>
-								<th>Categoria</th>
-								<th>cantidad</th>
-								<th>precio</th>
-								
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Precio</th>							
 							</tr>
 						</thead>
 						<tbody>
@@ -75,26 +70,16 @@
 							<c:forEach items="${pedidos}" var="p">
 								<tr id="r_${p.id}">
 										<td>${p.id}</td>
-										<td><input text="submit" name="usuario" value="${p.usuario.nombre}" size="10" /></td>
-										<td><input text="submit" name="descripcion" value="${p.producto.descripcion}"/></td>
-										<td><input text="submit" name="cantidad" value="${p.cantidad}" size="10"/></td>
-										<td><input text="submit" name="precio" value="${p.precio}" size="10"/></td>
-										
-							
-										<input hidden="submit" name="id" value="${p.id}" />
-										<td><button class="s" id="send_${p.id}">&#10004</button>
-										<button class="x" id="del_${p.id}"> <image
+										<td><input name="usuario" value="${e:forHtmlContent(p.usuario.nombre)}" size="10" /></td>
+										<td><input name="descripcion" value="${p.producto.descripcion}"/></td>
+										<td><input type="number" name="cantidad" value="${p.cantidad}" size="10"/></td>
+										<td><input type="number" name="precio" value="${p.precio}" size="10"/></td>
+										<td><button class="s" id="send_${p.id}"> <img width="16px" height="16px"
+										src="${prefix}resources/css/images/icn_alert_success.png" alt="Send"/></button>
+										<button class="x" id="del_${p.id}"> <img width="16px" height="16px"
 										src="${prefix}resources/css/images/icn_trash.png" alt="Trash"/></button>
-										<button class="edt" id="edt_${p.id}"> <image  
-										src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button></td></tr>
-									
-									<!--  <td>${u.id}</td>
-									<td>${e:forHtmlContent(u.login)}</td>
-									<td>${u.role}</td>
-									<td>${u.correo}</td>
-									<td><input type="image" src="${prefix}resources/css/images/icn_edit.png" title="Edit"></input>
-										<input class="x" id="del_${u.id}" type="image" src="${prefix}resources/css/images/icn_trash.png" title="Trash"></input></td>-->
-								</tr>
+										<button class="edt" id="edt_${p.id}"> <img width="16px" height="16px"
+										src="${prefix}resources/css/images/icn_edit.png" alt="Edit"/></button></td>								</tr>
 							</c:forEach>
 
 						</tbody>

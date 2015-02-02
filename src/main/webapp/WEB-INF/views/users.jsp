@@ -43,7 +43,6 @@
 			csrf : "${e:forJavaScript(csrf_token)}"
 		},
 				function(data) {
-// 			$("#edt_" + id).parent().parent().update();
 		location.reload(true);//Foreces reload from server
 		});
 	}
@@ -63,8 +62,7 @@
 				<div id="tab1" class="tab_content">
 					<table class="tablesorter">
 						<thead>
-							<tr>
-								
+							<tr>							
 								<th>Id</th>
 								<th>Rol</th>
 								<th>Login</th>

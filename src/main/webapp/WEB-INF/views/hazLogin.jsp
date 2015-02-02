@@ -71,7 +71,7 @@
 											<div class="cl">&nbsp;</div>
 									</form>
 									<ul class="options">
-										<li><a href="#" title="Contact Customer Support">Contactar con atenciOn al cliente</a></li>
+										<li><a href="${prefix}contact" title="Contact Customer Support">Contactar con atenciOn al cliente</a></li>
 									</ul>
 								</div>
 							</li>

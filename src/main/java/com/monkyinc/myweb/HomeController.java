@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.monkyinc.myweb.model.Pedido;
+import com.monkyinc.myweb.model.Post;
 import com.monkyinc.myweb.model.Producto;
 import com.monkyinc.myweb.model.Usuario;
 
@@ -47,7 +48,7 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
-
+	long lastPost = 0;
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -111,6 +112,33 @@ public class HomeController {
 	}
 
 //-------------------------------BEGIN:Adri---------------------------------------------
+	@RequestMapping(value = "/addPost", method = RequestMethod.POST)
+	@Transactional
+	public String addAdminPost(@RequestParam("author") String author,
+			@RequestParam("content") String content,
+			@RequestParam("csrf") String token,
+			Locale locale, HttpSession session,
+			HttpServletRequest request, Model model) {
+
+		if (!isAdmin(session) || !isTokenValid(session, token)) {
+			return "hazLogin";
+		} 
+		else{
+			
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+					DateFormat.LONG, locale);
+			String formattedDate = dateFormat.format(date);
+			
+			Post p = Post.newPost(author, formattedDate, content);
+			
+			entityManager.persist(p);
+			lastPost++;
+			
+			return "admin";
+		}
+	}
+	
 	/**
 	 * Returns a users' photo
 	 * 
@@ -192,7 +220,7 @@ public class HomeController {
 	//The uploading function is made inside /addProduct
 	
 	/** 
-	 * A user(used for admin page)
+	 *Edit a single user(used for admin page)
 	 */
 	@RequestMapping(value = "/admin/editUser", method = RequestMethod.POST)
 	@Transactional
@@ -270,10 +298,7 @@ public class HomeController {
 				}
 			}
 		}
-		
-	/**
-	 * A user(used for admin page)
-	 */
+
 	@RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
 	@Transactional
 	public String editProductAdmin(@RequestParam("id") long id,
@@ -372,7 +397,7 @@ public class HomeController {
 			@RequestParam("csrf") String token,
 			HttpSession session, HttpServletRequest request, Model model) {
 	
-		if (!isAdmin(session)) {
+		if (!isAdmin(session)||!isTokenValid(session, token)) {
 			return "hazLogin";
 		} 
 		else{
@@ -483,7 +508,12 @@ public class HomeController {
 				DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
-
+	
+		Post p = entityManager.find(Post.class,lastPost);
+		
+		model.addAttribute("pAuthor",p.getAuthor());
+		model.addAttribute("pDate", p.getDate());
+		model.addAttribute("pContent", p.getContent());
 		model.addAttribute("serverTime", formattedDate);
 		model.addAttribute("pageTitle", "MonkyInc:Bienvenido");
 
@@ -498,7 +528,6 @@ public class HomeController {
 			return "hazLogin";
 		} 
 		else{
-			logger.info("Welcome home! The client locale is {}.", locale);
 
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
@@ -515,7 +544,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public String contact(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
@@ -530,7 +558,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
@@ -545,7 +572,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/support", method = RequestMethod.GET)
 	public String support(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
@@ -563,14 +589,15 @@ public class HomeController {
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
 	public String addUser(@RequestParam("name") String name,
-			@RequestParam("surname") String surname,
-			@RequestParam("email") String email,
-			@RequestParam("username") String username,
-			@RequestParam("password") String password,
-			@RequestParam("repassword") String repassword,
-			@RequestParam("adress") String adress,
-			@RequestParam("phone") String phone, 
-			HttpSession session, HttpServletRequest request, Model model) {
+		@RequestParam("surname") String surname,
+		@RequestParam("email") String email,
+		@RequestParam("username") String username,
+		@RequestParam("password") String password,
+		@RequestParam("repassword") String repassword,
+		@RequestParam("adress") String adress,
+		@RequestParam("phone") String phone, 
+		HttpSession session, HttpServletRequest request, Model model) {
+
 
 		if (!password.equalsIgnoreCase(repassword)) {
 			return "badpassword";
@@ -620,8 +647,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/pedido", method = RequestMethod.GET)
 	public String pedido(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
+		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
 				DateFormat.LONG, locale);
@@ -641,25 +667,29 @@ public class HomeController {
 	@Transactional
 	public String addPedido(@RequestParam("producto") long producto_id,
 			@RequestParam("cantidad") int cantidad, Model model,
-			HttpSession session) {
-
-		if (session.getAttribute("user") != null) {
-
-			long user_id = ((Usuario) session.getAttribute("user")).getId();
-			Usuario user = entityManager.find(Usuario.class, user_id);
-			Producto product = entityManager.find(Producto.class, producto_id);
-
-			int precio = product.getPrecio();
-			int total = precio * cantidad;
-
-			Pedido p = Pedido.setPedido(0, user, total, cantidad, product);
-
-			entityManager.persist(p);
-			model.addAttribute("pedido", p);
-
-			return "pedidoAgregado";
-		} else {
+			@RequestParam("csrf") String token,	HttpSession session) {
+		
+		if (!isTokenValid(session, token)) {
 			return "hazLogin";
+		}else{
+			if (session.getAttribute("user") != null) {
+	
+				long user_id = ((Usuario) session.getAttribute("user")).getId();
+				Usuario user = entityManager.find(Usuario.class, user_id);
+				Producto product = entityManager.find(Producto.class, producto_id);
+	
+				int precio = product.getPrecio();
+				int total = precio * cantidad;
+	
+				Pedido p = Pedido.setPedido(0, user, total, cantidad, product);
+	
+				entityManager.persist(p);
+				model.addAttribute("pedido", p);
+	
+				return "pedidoAgregado";
+			} else {
+				return "hazLogin";
+			}
 		}
 	}
 
@@ -694,21 +724,26 @@ public class HomeController {
 			@RequestParam("direccion") String direccion,
 			@RequestParam("csrf") String token, HttpSession session,
 			HttpServletRequest request, Model model) {
-
-		Usuario u = entityManager.find(Usuario.class, id);
-
-		u.setRole(role);
-		u.setLogin(login);
-		u.setNombre(nombre);
-		u.setApellido(apellido);
-		u.setCorreo(correo);
-		u.setTelefono(telefono);
-		u.setDireccion(direccion);
-
-		model.addAttribute("u", u);
-		session.setAttribute("user", u);
 		
-		return "redirect:/account";
+		if (!isTokenValid(session, token)) {
+			return "hazLogin";
+		}else{
+
+			Usuario u = entityManager.find(Usuario.class, id);
+	
+			u.setRole(role);
+			u.setLogin(login);
+			u.setNombre(nombre);
+			u.setApellido(apellido);
+			u.setCorreo(correo);
+			u.setTelefono(telefono);
+			u.setDireccion(direccion);
+	
+			model.addAttribute("u", u);
+			session.setAttribute("user", u);
+			
+			return "redirect:/account";
+		}
 	}
 
 	@RequestMapping(value = "/iniciosesion", method = RequestMethod.GET)
@@ -772,25 +807,6 @@ public class HomeController {
 		return "badpassword";
 	}
 
-	@RequestMapping(value = "/admin/addUser", method = RequestMethod.GET)
-	public String addProductAdmin(Locale locale,Model model,HttpSession session) {
-		model.addAttribute("prefix", "../");
-		if (!isAdmin(session)) {
-			return "hazLogin";
-		} 
-		else{
-			Date date = new Date();
-			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-					DateFormat.LONG, locale);
-			String formattedDate = dateFormat.format(date);
-			
-			model.addAttribute("serverTime", formattedDate);
-			model.addAttribute("pageTitle", "Administración - Añadir Usuario");
-			
-			return "addUser";
-		}
-	}
-	
 	@RequestMapping(value = "/camisetas", method = RequestMethod.GET)
 	public String camisetas(Locale locale, Model model) {
 
@@ -861,13 +877,13 @@ public class HomeController {
 
 		return "actualizado";
 	}
-
-	/**
-	 * Edit a single user.
-	 */
+	
+	/*******************Lenin*********************/
 	@RequestMapping(value = "/admin/editPedido", method = RequestMethod.POST)
 	@Transactional
-	public String editPedidoAdmin(@RequestParam("Pedido") long id,
+	public String editPedidoAdmin(@RequestParam("id") long id,
+			@RequestParam("cantidad") String cantidad,
+			@RequestParam("precio") String precio,
 			@RequestParam("csrf") String token, HttpSession session,
 			HttpServletRequest request, Model model) {
 
@@ -875,21 +891,21 @@ public class HomeController {
 			return "hazLogin";
 		} 
 		else{
-			long user_id = ((Usuario) session.getAttribute("user")).getId();
+			
 			Pedido p = entityManager.find(Pedido.class, id);
+		
+			int cant = Integer.parseInt(cantidad);
+			int prec = Integer.parseInt(precio);
 			
+			//Si no ha modificado la cantidad se permite modificar un precio
+			//al administrador para aplicar descuentos personales al pedido
+			if(p.getCantidad()==cant)
+				p.setPrecio(prec);
+			else
+				p.setPrecio(prec*cant);
 			
-			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-			p.setCantidad(cantidad);
-			int precio = Integer.parseInt(request.getParameter("precio"));
-			p.setPrecio(precio);
-			Usuario user = entityManager.find(Usuario.class, user_id);
-			p.setUsuario(user);
-			
-			long producto_id = p.getProducto().getId();
-			Producto product = entityManager.find(Producto.class,  producto_id);
-			p.setProducto(product);
-
+			p.setCantidad(cant);
+		
 			model.addAttribute("p", p);
 			
 			return "pedidos";

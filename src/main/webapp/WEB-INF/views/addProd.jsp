@@ -25,13 +25,13 @@
 							<input id="precio" name="precio" required type="number">
 						</div>
 						<div>
-							<label for="photo">Selecciona foto de producto: </label>
+							<label for="photo">Selecciona foto para el producto: </label>
 							<br>
 							<input type="file" name="photo"><br />
 						</div>
 						
 						<input class="buttom" name="submit" id="submit" value="Añadir Producto" type="submit">
-						<input hidden="submit" name="csrf" value="${csrf}" />
+						<input hidden="submit" name="csrf" value="${csrf_token}" />
 						
 					</form>
 

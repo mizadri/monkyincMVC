@@ -95,13 +95,11 @@ Standard header for all jsp pages in the site. Requires the following model vari
 		</ul>
 		<h3>Usuarios</h3>
 		<ul class="toggle">
-			<li class="icn_add_user"><a href="/myweb/admin/addUser">Añadir usuario</a></li>
 			<li class="icn_profile"><a href="/myweb/admin/editUsers">Editar/borrar
 					usuarios</a></li>
 		</ul>
 		<h3>Pedidos</h3>
 		<ul class="toggle">
-			<li class="icn_new_article"><a href="#">Añadir pedido</a></li>
 			<li class="icn_settings"><a href="/myweb/admin/editPedidos">Editar/borrar
 					pedidos</a></li>
 

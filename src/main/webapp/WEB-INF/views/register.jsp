@@ -87,7 +87,7 @@
 						<input id="phone" name="phone" placeholder="Teléfono" required
 							type="text"><br> <input class="buttom" name="submit"
 							id="submit" value="¡Registrarse!" type="submit"> <input
-							type="hidden" name="csrf" value="${csrf}" />
+							type="hidden" name="csrf" value="${csrf_token}" />
 					</form>
 				</div>
 				<!-- End Content -->

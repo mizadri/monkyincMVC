@@ -64,7 +64,7 @@
 								<li><a href="#tabs-3">Pedidos</a></li>
 							</ul>
 							<div id="tabs-1">
-								<br><h2>¡Hola ${usuario.nombre}! Aquí podrás modificar tu perfil.</h2><br>
+								<br><h2>!Hola ${e:forHtmlContent(usuario.nombre)}! Aquí podrás modificar tu perfil.</h2><br>
 								<form action="${prefix}editProfile" method="post">
 									<br>
 									<div class="form">
@@ -74,7 +74,7 @@
 										<br><label>Correo: </label><input text="submit" name="correo" value="${e:forHtmlContent(usuario.correo)}" /><br>
 										<br><label>Telefono: </label><input text="submit" name="telefono" value="${e:forHtmlContent(usuario.telefono)}" /><br>
 										<br><label>Dirección: </label><input text="submit" name="direccion" value="${e:forHtmlContent(usuario.direccion)}" /><br>
-										<input type="hidden" name="csrf" value="${csrf}" />
+										<input type="hidden" name="csrf" value="${csrf_token}" />
 										<input type="hidden" name="id" value="${usuario.id}" />
 										<input type="hidden" name="role" value="${usuario.role}" />
 										<br><button type="submit" name="upload" value="ok">Actualizar</button>
@@ -83,7 +83,7 @@
 								<br><br>
 							</div>
 							<div id="tabs-2">
-								<br><h2>!Hola ${usuario.nombre}! Aquí podrás subir una foto de perfil.</h2><br>
+								<br><h2>!Hola ${e:forHtmlContent(usuario.nombre)}! Aquí podrás subir una foto de perfil.</h2><br>
 								<form method="POST" enctype="multipart/form-data" action="user">
 									Imágen a subir <input type="file" name="photo"><br />
 									<input hidden="submit" name="id" value="${usuario.id}" />
@@ -112,7 +112,7 @@
 											<c:forEach items="${pedido}" var="p">
 												<tr id="r_${p.id}">
 													<td>${p.id}</td>
-													<td>${p.usuario.nombre}</td>
+													<td>${e:forHtmlContent(usuario.nombre)}</td>
 													<td><input class="editpedido" type="number" text="submit" width="40px" name="cantidad" value="${p.cantidad}"></input></td>
 													<td>${p.precio}</td>
 													<td>${p.producto.descripcion}</td>
@@ -129,7 +129,7 @@
 								
 								</c:when>
 								<c:when test="${empty pedido}">
-									<p>Lo sentimos ${usuario.nombre} No has realizado ningún pedido hasta el momento,
+									<p>Lo sentimos ${e:forHtmlContent(usuario.nombre)} No has realizado ningún pedido hasta el momento,
 									visita nuestra <a href="${prefix}tienda" style="color:blue">tienda</a>!</p><br><br><br><br>
 									<br><br><br><br><br><br><br><br><br><br><br>
 								</c:when>

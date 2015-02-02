@@ -155,33 +155,19 @@
 					<!-- Begin Products Slider -->
 					<div id="pr-slider">
 						<ul>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img1.jpg" alt="Slide TShirt 1" /></a></li>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img2.jpg" alt="Slide TShirt 2" /></a></li>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img3.jpg" alt="Slide TShirt 3" /></a></li>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img4.jpg" alt="Slide TShirt 4" /></a></li>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img5.jpg" alt="Slide TShirt 5" /></a></li>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img6.jpg" alt="Slide TShirt 6" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img7.jpg" alt="Slide TShirt 7" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img1.jpg" alt="Slide TShirt 1" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img2.jpg" alt="Slide TShirt 2" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img3.jpg" alt="Slide TShirt 3" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img4.jpg" alt="Slide TShirt 4" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img5.jpg" alt="Slide TShirt 5" /></a></li>
-							<li><a href="#"><img
-									src="resources/css/images/slide-img6.jpg" alt="Slide TShirt 6" /></a></li>
-							<li><a href="#"><img
+							<li><a href="tienda"><img
 									src="resources/css/images/slide-img7.jpg" alt="Slide TShirt 7" /></a></li>
 						</ul>
 						<div class="cl">&nbsp;</div>

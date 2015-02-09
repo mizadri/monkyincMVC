@@ -1,5 +1,6 @@
 package com.monkyinc.myweb.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -42,6 +43,8 @@ public class Post {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	@Column(length=4096)
 	public String getContent() {
 		return content;
 	}
